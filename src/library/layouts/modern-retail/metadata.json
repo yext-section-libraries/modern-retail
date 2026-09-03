@@ -1,0 +1,11 @@
+{
+  "id": "modern-retail",
+  "displayName": "Modern Retail",
+  "vertical": [
+    "RETAIL"
+  ],
+  "purpose": [
+    "LOCATION"
+  ],
+  "pageSetType": "ENTITY"
+}

@@ -1,0 +1,1851 @@
+{
+  "root": {
+    "props": {
+      "title": {
+        "field": "name",
+        "constantValue": "Yext Modern Retail Pages",
+        "constantValueEnabled": false
+      },
+      "version": 78,
+      "description": {
+        "field": "description",
+        "constantValue": "",
+        "constantValueEnabled": false
+      }
+    }
+  },
+  "zones": {},
+  "content": [
+    {
+      "type": "ModernRetailHeader",
+      "props": {
+        "id": "ModernRetailHeader-7fcb9c60-7ef6-455b-9449-8180cb23d44c",
+        "cta": {
+          "show": true,
+          "items": [
+            {
+              "cta": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#"
+                      },
+                      "label": {
+                        "defaultValue": "CTA Label"
+                      },
+                      "ctaType": "textAndLink",
+                      "linkType": "URL"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "customId": "",
+                  "ariaLabel": {
+                    "defaultValue": "CTA Label"
+                  },
+                  "actionType": "link",
+                  "buttonText": {
+                    "defaultValue": "Button"
+                  },
+                  "customClass": "",
+                  "openInNewTab": false,
+                  "dataAttributes": []
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "color": {
+                    "selectedColor": "palette-primary-contrast",
+                    "contrastingColor": "palette-primary"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "primary"
+                }
+              }
+            }
+          ]
+        },
+        "section": {
+          "backgroundColor": {
+            "selectedColor": "palette-primary",
+            "contrastingColor": "palette-primary-contrast"
+          },
+          "visibleOnLivePage": true
+        },
+        "variant": "stackedNavBelow",
+        "logoImage": {
+          "url": {
+            "field": "",
+            "constantValue": {
+              "defaultValue": ""
+            },
+            "constantValueEnabled": true
+          },
+          "show": true,
+          "image": {
+            "field": "",
+            "constantValue": {
+              "url": "https://a.mktgcdn.com/p/OLT2KExDEKhKlCmIobyRRHN6MFUS77fVs5gIt_FTnBI/450x450.jpg",
+              "width": 450,
+              "height": 450
+            },
+            "constantValueEnabled": true
+          },
+          "styles": {
+            "borderRadius": "default"
+          },
+          "aspectRatio": 1,
+          "imageConstrain": "fixed"
+        },
+        "utilities": {
+          "show": true,
+          "items": [
+            {
+              "link": "#",
+              "label": "Item 1",
+              "linkType": "URL",
+              "iconImage": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "",
+                    "width": 0,
+                    "height": 0
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "borderRadius": "default"
+                },
+                "aspectRatio": 1,
+                "imageConstrain": "fixed"
+              },
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#",
+              "label": "Item 2",
+              "linkType": "URL",
+              "iconImage": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "",
+                    "width": 0,
+                    "height": 0
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "borderRadius": "default"
+                },
+                "aspectRatio": 1,
+                "imageConstrain": "fixed"
+              },
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#",
+              "label": "Item 3",
+              "linkType": "URL",
+              "iconImage": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "",
+                    "width": 0,
+                    "height": 0
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "borderRadius": "default"
+                },
+                "aspectRatio": 1,
+                "imageConstrain": "fixed"
+              },
+              "openInNewTab": false,
+              "normalizeLink": false
+            }
+          ]
+        },
+        "navigation": {
+          "show": true,
+          "links": [
+            {
+              "link": "#",
+              "label": "Locations",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#",
+              "label": "Men",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#",
+              "label": "Women",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#",
+              "label": "Kids",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#",
+              "label": "Sale",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#",
+              "label": "Rewards",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            }
+          ],
+          "styles": {
+            "fontSize": "default",
+            "fontStyle": "default",
+            "fontFamily": "default",
+            "fontWeight": "default",
+            "includeCaret": "default",
+            "letterSpacing": "default",
+            "textTransform": "default"
+          }
+        }
+      }
+    },
+    {
+      "type": "MainContent",
+      "props": {
+        "id": "MainContent-default",
+        "content": [
+          {
+            "type": "ModernRetailBreadcrumbs",
+            "props": {
+              "id": "ModernRetailBreadcrumbs-10eaf7a7-8e21-4433-b9f3-423911cf09fd",
+              "links": {
+                "styles": {
+                  "fontSize": "13px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "500",
+                  "textTransform": "uppercase"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "rootLabel": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "All Locations",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "13px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "600",
+                  "textTransform": "uppercase"
+                }
+              },
+              "currentPage": {
+                "styles": {
+                  "fontSize": "13px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "600",
+                  "textTransform": "uppercase"
+                },
+                "includeCurrentPage": true
+              }
+            }
+          },
+          {
+            "type": "ModernRetailHero",
+            "props": {
+              "id": "ModernRetailHero-026bfbff-f172-41f6-b26e-54191cbd6bb5",
+              "ctas": [
+                {
+                  "item": {
+                    "data": {
+                      "cta": {
+                        "field": "",
+                        "selectedType": "textAndLink",
+                        "constantValue": {
+                          "link": {
+                            "defaultValue": "#",
+                            "hasLocalizedValue": "true"
+                          },
+                          "label": {
+                            "defaultValue": "Get Directions",
+                            "hasLocalizedValue": "true"
+                          },
+                          "openInNewTab": false,
+                          "normalizeLink": false
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "actionType": "link",
+                      "openInNewTab": false
+                    },
+                    "styles": {
+                      "button": {
+                        "fontSize": "13px",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "400",
+                        "borderRadius": "default",
+                        "letterSpacing": "0.08em",
+                        "textTransform": "uppercase"
+                      },
+                      "variant": "primary"
+                    }
+                  }
+                },
+                {
+                  "item": {
+                    "data": {
+                      "cta": {
+                        "field": "",
+                        "selectedType": "textAndLink",
+                        "constantValue": {
+                          "link": {
+                            "defaultValue": "#",
+                            "hasLocalizedValue": "true"
+                          },
+                          "label": {
+                            "defaultValue": "Learn More",
+                            "hasLocalizedValue": "true"
+                          },
+                          "openInNewTab": false,
+                          "normalizeLink": false
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "actionType": "link",
+                      "openInNewTab": false
+                    },
+                    "styles": {
+                      "button": {
+                        "fontSize": "13px",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "400",
+                        "borderRadius": "default",
+                        "letterSpacing": "0.08em",
+                        "textTransform": "uppercase"
+                      },
+                      "variant": "secondary"
+                    }
+                  }
+                }
+              ],
+              "hours": {
+                "field": "hours",
+                "constantValue": {},
+                "constantValueEnabled": false
+              },
+              "header": {
+                "text": {
+                  "field": "name",
+                  "constantValue": {
+                    "defaultValue": "",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": false
+                },
+                "styles": {
+                  "fontSize": "48px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "700",
+                  "textTransform": "uppercase"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                },
+                "visibleOnLivePage": true
+              },
+              "background": {
+                "type": "image",
+                "image": {
+                  "image": {
+                    "field": "",
+                    "constantValue": {
+                      "url": "https://a.mktgcdn.com/p/vQqhmnexQfZueJGyh5M_j5W4EcTkTyZlW93eIoqjjvQ/1900x1267.jpg",
+                      "width": 1900,
+                      "height": 1267,
+                      "alternateText": {
+                        "defaultValue": "Retail storefront hero image",
+                        "hasLocalizedValue": "true"
+                      }
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "styles": {
+                    "borderRadius": "default"
+                  },
+                  "aspectRatio": 0,
+                  "imageConstrain": "filled"
+                },
+                "solidColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                }
+              },
+              "description": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat, sem quis blandit gravida, eros lacus volutpat lorem, vitae viverra magna arcu non neque.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat, sem quis blandit gravida, eros lacus volutpat lorem, vitae viverra magna arcu non neque.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "16px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "hoursStyles": {
+                "timeFormat": "12h",
+                "showCurrentStatus": true
+              },
+              "additionalHeader": {
+                "text": {
+                  "field": "geomodifier",
+                  "constantValue": {
+                    "defaultValue": "",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": false
+                },
+                "styles": {
+                  "fontSize": "48px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "700",
+                  "textTransform": "uppercase"
+                }
+              },
+              "reviewsRatingAndCount": {
+                "rating": "",
+                "showStarsLabel": true,
+                "reviewCountLabel": ""
+              }
+            }
+          },
+          {
+            "type": "ModernRetailDetails",
+            "props": {
+              "id": "ModernRetailDetails-d5664b72-a050-47c3-91fd-2a09d74e1bef",
+              "data": {
+                "info": {
+                  "phone": {
+                    "items": [
+                      {
+                        "label": "",
+                        "number": {
+                          "field": "mainPhone",
+                          "constantValue": "",
+                          "constantValueEnabled": false
+                        }
+                      }
+                    ],
+                    "subheading": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Phone",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "phoneFormat": "domestic",
+                    "includeHyperlink": false
+                  },
+                  "address": {
+                    "address": {
+                      "field": "address",
+                      "constantValue": {
+                        "city": "",
+                        "line1": "",
+                        "region": "",
+                        "postalCode": "",
+                        "countryCode": ""
+                      },
+                      "constantValueEnabled": false
+                    },
+                    "showRegion": true,
+                    "subheading": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Address",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "showCountry": false
+                  },
+                  "heading": {
+                    "field": "",
+                    "constantValue": {
+                      "defaultValue": "Location Information",
+                      "hasLocalizedValue": "true"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "primaryCta": {
+                    "data": {
+                      "cta": {
+                        "field": "",
+                        "selectedType": "textAndLink",
+                        "constantValue": {
+                          "link": {
+                            "defaultValue": "#",
+                            "hasLocalizedValue": "true"
+                          },
+                          "label": {
+                            "defaultValue": "Visit Website",
+                            "hasLocalizedValue": "true"
+                          },
+                          "openInNewTab": false,
+                          "normalizeLink": false
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "actionType": "link",
+                      "openInNewTab": false
+                    },
+                    "styles": {
+                      "color": {
+                        "selectedColor": "palette-primary",
+                        "contrastingColor": "palette-primary-contrast"
+                      },
+                      "button": {
+                        "fontSize": "13px",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "400",
+                        "borderRadius": "default",
+                        "letterSpacing": "0.08em",
+                        "textTransform": "uppercase"
+                      },
+                      "variant": "primary"
+                    }
+                  },
+                  "secondaryCta": {
+                    "data": {
+                      "cta": {
+                        "field": "",
+                        "selectedType": "textAndLink",
+                        "constantValue": {
+                          "link": {
+                            "defaultValue": "#",
+                            "hasLocalizedValue": "true"
+                          },
+                          "label": {
+                            "defaultValue": "Get Directions",
+                            "hasLocalizedValue": "true"
+                          },
+                          "openInNewTab": false,
+                          "normalizeLink": false
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "actionType": "link",
+                      "openInNewTab": false
+                    },
+                    "styles": {
+                      "color": {
+                        "selectedColor": "palette-primary",
+                        "contrastingColor": "palette-primary-contrast"
+                      },
+                      "button": {
+                        "fontSize": "13px",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "400",
+                        "borderRadius": "default",
+                        "letterSpacing": "0.08em",
+                        "textTransform": "uppercase"
+                      },
+                      "variant": "secondary"
+                    }
+                  }
+                },
+                "hours": {
+                  "hours": {
+                    "field": "hours",
+                    "constantValue": {},
+                    "constantValueEnabled": false
+                  },
+                  "heading": {
+                    "field": "",
+                    "constantValue": {
+                      "defaultValue": "Store Hours",
+                      "hasLocalizedValue": "true"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "hoursStyles": {
+                    "alignment": "items-end",
+                    "timeFormat": "12h",
+                    "startOfWeek": "monday",
+                    "collapseDays": false,
+                    "showDayNames": true,
+                    "dayOfWeekFormat": "long",
+                    "showCurrentStatus": false,
+                    "showAdditionalHoursText": false
+                  }
+                },
+                "services": {
+                  "items": {
+                    "field": "",
+                    "mappings": {
+                      "text": {
+                        "field": "",
+                        "constantValueEnabled": false
+                      },
+                      "status": {
+                        "field": "",
+                        "constantValueEnabled": false
+                      }
+                    },
+                    "constantValue": [
+                      {
+                        "text": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "Lorem ipsum personal styling",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        },
+                        "status": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "check",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        }
+                      },
+                      {
+                        "text": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "Dolor fitting room requests",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        },
+                        "status": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "check",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        }
+                      },
+                      {
+                        "text": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "Amet in-store convenience",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        },
+                        "status": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "check",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        }
+                      },
+                      {
+                        "text": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "Consectetur mobile checkout",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        },
+                        "status": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "check",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        }
+                      },
+                      {
+                        "text": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "Adipiscing wrap station",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        },
+                        "status": {
+                          "field": "",
+                          "constantValue": {
+                            "defaultValue": "check",
+                            "hasLocalizedValue": "true"
+                          },
+                          "constantValueEnabled": true
+                        }
+                      }
+                    ],
+                    "constantValueEnabled": true
+                  },
+                  "heading": {
+                    "field": "",
+                    "constantValue": {
+                      "defaultValue": "Services",
+                      "hasLocalizedValue": "true"
+                    },
+                    "constantValueEnabled": true
+                  }
+                },
+                "sectionHeading": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Store Details",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                }
+              },
+              "styles": {
+                "phone": {},
+                "address": {},
+                "heading": {
+                  "styles": {
+                    "fontSize": "20px",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "700",
+                    "textTransform": "default"
+                  }
+                },
+                "services": {},
+                "sectionHeading": {
+                  "styles": {
+                    "fontSize": "clamp(28px, 3.4vw, 44px)",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "700",
+                    "textTransform": "uppercase"
+                  }
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "palette-quaternary"
+                },
+                "visibleOnLivePage": true,
+                "cardBackgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "palette-quaternary"
+                }
+              }
+            }
+          },
+          {
+            "type": "ModernRetailServices",
+            "props": {
+              "id": "ModernRetailServices-8d8f159a-9f2f-42da-be92-a437fd631cf4",
+              "data": {
+                "cards": {
+                  "field": "",
+                  "mappings": {
+                    "image": {
+                      "field": "",
+                      "constantValueEnabled": false
+                    },
+                    "title": {
+                      "field": "",
+                      "constantValueEnabled": false
+                    },
+                    "description": {
+                      "field": "",
+                      "constantValueEnabled": false
+                    }
+                  },
+                  "constantValue": [
+                    {
+                      "image": {
+                        "field": "",
+                        "constantValue": {
+                          "url": "https://a.mktgcdn.com/p/UHR6VTEvcR-yDMqPSOS7LyK87Qt56EOrmfNbhLQxI08/1267x1900.jpg",
+                          "width": 1267,
+                          "height": 1900,
+                          "alternateText": "Editorial service card one"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "title": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Lorem Styling",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "description": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": {
+                            "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.</span></p>",
+                            "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                          },
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    {
+                      "image": {
+                        "field": "",
+                        "constantValue": {
+                          "url": "https://a.mktgcdn.com/p/fbSbItkZpsHpkc8qHH7GxvQkWzxsfm6mGc0k4Lmfl-A/1267x1900.jpg",
+                          "width": 1267,
+                          "height": 1900,
+                          "alternateText": "Editorial service card two"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "title": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Ipsum Atelier",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "description": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": {
+                            "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Curabitur pharetra orci sit amet urna feugiat, at faucibus nibh placerat.</span></p>",
+                            "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Curabitur pharetra orci sit amet urna feugiat, at faucibus nibh placerat.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                          },
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    {
+                      "image": {
+                        "field": "",
+                        "constantValue": {
+                          "url": "https://a.mktgcdn.com/p/Qdlacb36DqN5Lt3q6V9jw-qSMmbPyl_AeMEI_CyDkHc/1267x1900.jpg",
+                          "width": 1267,
+                          "height": 1900,
+                          "alternateText": "Editorial service card three"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "title": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Dolor Pairing",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "description": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": {
+                            "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Sed posuere sapien vitae massa convallis, non feugiat lectus blandit.</span></p>",
+                            "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Sed posuere sapien vitae massa convallis, non feugiat lectus blandit.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                          },
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    {
+                      "image": {
+                        "field": "",
+                        "constantValue": {
+                          "url": "https://a.mktgcdn.com/p/UHR6VTEvcR-yDMqPSOS7LyK87Qt56EOrmfNbhLQxI08/1267x1900.jpg",
+                          "width": 1267,
+                          "height": 1900,
+                          "alternateText": "Editorial service card four"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "title": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Amet Tailoring",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "description": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": {
+                            "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Vivamus luctus tortor vel lacus maximus, ut malesuada velit vulputate.</span></p>",
+                            "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Vivamus luctus tortor vel lacus maximus, ut malesuada velit vulputate.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                          },
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    }
+                  ],
+                  "constantValueEnabled": true
+                },
+                "heading": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Featured Shopping Experiences",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "sectionButton": {
+                  "data": {
+                    "cta": {
+                      "field": "",
+                      "selectedType": "textAndLink",
+                      "constantValue": {
+                        "link": {
+                          "defaultValue": "#",
+                          "hasLocalizedValue": "true"
+                        },
+                        "label": {
+                          "defaultValue": "See All Services",
+                          "hasLocalizedValue": "true"
+                        },
+                        "openInNewTab": false,
+                        "normalizeLink": false
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "actionType": "link",
+                    "openInNewTab": false
+                  },
+                  "styles": {
+                    "color": {
+                      "selectedColor": "palette-primary",
+                      "contrastingColor": "palette-primary-contrast"
+                    },
+                    "button": {
+                      "fontSize": "13px",
+                      "fontStyle": "default",
+                      "fontFamily": "default",
+                      "fontWeight": "400",
+                      "borderRadius": "default",
+                      "letterSpacing": "0.08em",
+                      "textTransform": "uppercase"
+                    },
+                    "variant": "primary"
+                  }
+                }
+              },
+              "styles": {
+                "heading": {
+                  "styles": {
+                    "fontSize": "44px",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "700",
+                    "textTransform": "uppercase"
+                  }
+                },
+                "cardImage": {
+                  "styles": {
+                    "borderRadius": "default"
+                  },
+                  "aspectRatio": 1,
+                  "imageConstrain": "filled"
+                },
+                "cardTitle": {
+                  "styles": {
+                    "fontSize": "20px",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "700",
+                    "textTransform": "default"
+                  }
+                },
+                "cardButton": {
+                  "data": {
+                    "cta": {
+                      "field": "",
+                      "selectedType": "textAndLink",
+                      "constantValue": {
+                        "link": {
+                          "defaultValue": "#",
+                          "hasLocalizedValue": "true"
+                        },
+                        "label": {
+                          "defaultValue": "Learn More",
+                          "hasLocalizedValue": "true"
+                        },
+                        "openInNewTab": false,
+                        "normalizeLink": false
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "actionType": "link",
+                    "openInNewTab": false
+                  },
+                  "styles": {
+                    "button": {
+                      "fontSize": "13px",
+                      "fontStyle": "default",
+                      "fontFamily": "default",
+                      "fontWeight": "400",
+                      "borderRadius": "default",
+                      "letterSpacing": "0.08em",
+                      "textTransform": "uppercase"
+                    },
+                    "variant": "secondary"
+                  }
+                },
+                "cardDescription": {
+                  "styles": {
+                    "fontSize": "16px",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "400",
+                    "textTransform": "default"
+                  }
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "palette-quaternary"
+                },
+                "visibleOnLivePage": true,
+                "cardBackgroundColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                }
+              }
+            }
+          },
+          {
+            "type": "ModernRetailCollection",
+            "props": {
+              "id": "ModernRetailCollection-f00dc67e-9d49-4e03-bade-6d67dba25e10",
+              "cta": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#",
+                        "hasLocalizedValue": "true"
+                      },
+                      "label": {
+                        "defaultValue": "Shop Now",
+                        "hasLocalizedValue": "true"
+                      },
+                      "openInNewTab": false,
+                      "normalizeLink": false
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "actionType": "link",
+                  "openInNewTab": false
+                },
+                "styles": {
+                  "color": {
+                    "selectedColor": "palette-primary",
+                    "contrastingColor": "palette-primary-contrast"
+                  },
+                  "button": {
+                    "fontSize": "13px",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "400",
+                    "borderRadius": "default",
+                    "letterSpacing": "0.08em",
+                    "textTransform": "uppercase"
+                  },
+                  "variant": "primary"
+                }
+              },
+              "body": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales nibh ut nisl facilisis, vitae ultrices sapien malesuada.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sodales nibh ut nisl facilisis, vitae ultrices sapien malesuada.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "16px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Shop Our Seasonal Collection",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "clamp(28px, 3.4vw, 44px)",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "700",
+                  "textTransform": "uppercase"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "palette-quaternary"
+                },
+                "visibleOnLivePage": true
+              },
+              "sectionImage": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "https://a.mktgcdn.com/p/UHR6VTEvcR-yDMqPSOS7LyK87Qt56EOrmfNbhLQxI08/1267x1900.jpg",
+                    "width": 1267,
+                    "height": 1900,
+                    "alternateText": "Seasonal collection editorial image"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "borderRadius": "default"
+                },
+                "aspectRatio": 0,
+                "imageConstrain": "filled"
+              },
+              "cardBackgroundColor": {
+                "selectedColor": "white",
+                "contrastingColor": "palette-quaternary"
+              }
+            }
+          },
+          {
+            "type": "ModernRetailFaq",
+            "props": {
+              "id": "ModernRetailFaq-ea0d8b16-40d4-4e5e-a354-c5d0d1bfc2f9",
+              "faqs": {
+                "field": "",
+                "mappings": {
+                  "answer": {
+                    "field": "",
+                    "constantValueEnabled": false
+                  },
+                  "question": {
+                    "field": "",
+                    "constantValueEnabled": false
+                  }
+                },
+                "constantValue": [
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi curabitur laoreet fermentum tortor.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi curabitur laoreet fermentum tortor.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Do I need an appointment for support?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Where is the best place to start?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Can I update an earlier request here?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Do you offer concierge pickup?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Is tailoring available for outside items?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  }
+                ],
+                "constantValueEnabled": true
+              },
+              "answer": {
+                "styles": {
+                  "fontSize": "16px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Frequently Asked Questions",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "clamp(28px, 3.4vw, 44px)",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "700",
+                  "textTransform": "uppercase"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "palette-quaternary"
+                },
+                "visibleOnLivePage": true
+              },
+              "question": {
+                "styles": {
+                  "fontSize": "clamp(16px, 1.5vw, 20px)",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "500",
+                  "textTransform": "default"
+                }
+              }
+            }
+          },
+          {
+            "type": "ModernRetailAbout",
+            "props": {
+              "id": "ModernRetailAbout-84482d98-838b-42cc-9be0-e1fe61a6bf4a",
+              "cta": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#",
+                        "hasLocalizedValue": "true"
+                      },
+                      "label": {
+                        "defaultValue": "Learn More",
+                        "hasLocalizedValue": "true"
+                      },
+                      "openInNewTab": false,
+                      "normalizeLink": false
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "actionType": "link",
+                  "openInNewTab": false
+                },
+                "styles": {
+                  "color": {
+                    "selectedColor": "palette-primary",
+                    "contrastingColor": "palette-primary-contrast"
+                  },
+                  "button": {
+                    "fontSize": "13px",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "400",
+                    "borderRadius": "default",
+                    "letterSpacing": "0.08em",
+                    "textTransform": "uppercase"
+                  },
+                  "variant": "primary"
+                }
+              },
+              "body": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat, pulvinar nec lectus sed, consequat tempus elit.</span></p><p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; nunc dictum tincidunt nibh, eu hendrerit mi efficitur vitae.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam erat volutpat, pulvinar nec lectus sed, consequat tempus elit.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; nunc dictum tincidunt nibh, eu hendrerit mi efficitur vitae.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "16px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "About This Store",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "clamp(28px, 3.4vw, 44px)",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "700",
+                  "textTransform": "uppercase"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "palette-quaternary"
+                },
+                "visibleOnLivePage": true
+              },
+              "sectionImage": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "https://a.mktgcdn.com/p/fbSbItkZpsHpkc8qHH7GxvQkWzxsfm6mGc0k4Lmfl-A/1267x1900.jpg",
+                    "width": 1267,
+                    "height": 1900,
+                    "alternateText": "About section editorial image"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "borderRadius": "default"
+                },
+                "aspectRatio": 0,
+                "imageConstrain": "filled"
+              },
+              "cardBackgroundColor": {
+                "selectedColor": "white",
+                "contrastingColor": "palette-quaternary"
+              }
+            }
+          },
+          {
+            "type": "ModernRetailReviews",
+            "props": {
+              "id": "ModernRetailReviews-2ea623d7-5ba6-4a3b-9ea2-54d7b281b7fd",
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "What Customers Are Saying",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "44px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "700",
+                  "textTransform": "uppercase"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "palette-quaternary"
+                },
+                "visibleOnLivePage": true
+              },
+              "cardBackgroundColor": {
+                "selectedColor": "white",
+                "contrastingColor": "palette-quaternary"
+              }
+            }
+          },
+          {
+            "type": "ModernRetailCommunity",
+            "props": {
+              "id": "ModernRetailCommunity-acbae072-d3f0-4764-908f-dbcc69147403",
+              "cta": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#",
+                        "hasLocalizedValue": "true"
+                      },
+                      "label": {
+                        "defaultValue": "Join Mailing List",
+                        "hasLocalizedValue": "true"
+                      },
+                      "openInNewTab": false,
+                      "normalizeLink": false
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "actionType": "link",
+                  "openInNewTab": false
+                },
+                "styles": {
+                  "button": {
+                    "fontSize": "13px",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "400",
+                    "borderRadius": "default",
+                    "letterSpacing": "0.08em",
+                    "textTransform": "uppercase"
+                  },
+                  "variant": "primary"
+                }
+              },
+              "body": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Curabitur feugiat lacus in lectus dictum, eu malesuada arcu pulvinar.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Curabitur feugiat lacus in lectus dictum, eu malesuada arcu pulvinar.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "20px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "400",
+                  "textTransform": "default"
+                }
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Community & Events",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "clamp(28px, 3vw, 46px)",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "700",
+                  "textTransform": "uppercase"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "isDarkColor": true,
+                  "selectedColor": "[#000000]",
+                  "contrastingColor": "white"
+                },
+                "visibleOnLivePage": true
+              },
+              "sectionImage": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "https://a.mktgcdn.com/p/Qdlacb36DqN5Lt3q6V9jw-qSMmbPyl_AeMEI_CyDkHc/1267x1900.jpg",
+                    "width": 1267,
+                    "height": 1900,
+                    "alternateText": "Community editorial image"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "borderRadius": "default"
+                },
+                "aspectRatio": 0,
+                "imageConstrain": "filled"
+              }
+            }
+          },
+          {
+            "type": "ModernRetailNearby",
+            "props": {
+              "id": "ModernRetailNearby-2e9513b2-2e84-4e71-bc2f-519b6a66e6da",
+              "map": {
+                "zoom": 11,
+                "height": "100%",
+                "mapStyle": "streets-v12",
+                "coordinate": {
+                  "field": "yextDisplayCoordinate",
+                  "constantValue": {
+                    "latitude": 0,
+                    "longitude": 0
+                  },
+                  "constantValueEnabled": false
+                }
+              },
+              "button": {
+                "textColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                },
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "palette-primary"
+                }
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Nearby",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "44px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "700",
+                  "textTransform": "uppercase"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "palette-quaternary"
+                },
+                "visibleOnLivePage": true
+              },
+              "cardBody": {
+                "styles": {
+                  "fontSize": "18px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "cardTitle": {
+                "styles": {
+                  "fontSize": "28px",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "700",
+                  "textTransform": "none"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ModernRetailFooter",
+      "props": {
+        "id": "ModernRetailFooter-70929325-4259-413c-91c3-2a4b3a8bfa17",
+        "brand": {
+          "logo": {
+            "image": {
+              "field": "",
+              "constantValue": {
+                "url": "https://a.mktgcdn.com/p/OLT2KExDEKhKlCmIobyRRHN6MFUS77fVs5gIt_FTnBI/450x450.jpg",
+                "width": 450,
+                "height": 450,
+                "alternateText": {
+                  "defaultValue": "[[name]]",
+                  "hasLocalizedValue": "true"
+                }
+              },
+              "constantValueEnabled": true
+            },
+            "styles": {
+              "borderRadius": "default"
+            },
+            "aspectRatio": 0,
+            "imageConstrain": "fixed"
+          },
+          "name": {
+            "text": {
+              "field": "name",
+              "constantValue": {
+                "defaultValue": "[[name]]",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "styles": {
+              "fontSize": "18.5px",
+              "fontStyle": "default",
+              "fontFamily": "default",
+              "fontWeight": "500",
+              "textTransform": "uppercase"
+            }
+          },
+          "logoSource": "custom",
+          "displayType": "text"
+        },
+        "section": {
+          "backgroundColor": {
+            "selectedColor": "palette-secondary",
+            "contrastingColor": "palette-secondary-contrast"
+          },
+          "visibleOnLivePage": true
+        },
+        "footerLinks": [
+          {
+            "link": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "#",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "label": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "Departments",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "openInNewTab": false
+          },
+          {
+            "link": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "#modern-retail-services",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "label": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "Shopping Services",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "openInNewTab": false
+          },
+          {
+            "link": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "#modern-retail-location-details",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "label": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "Locations",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "openInNewTab": false
+          },
+          {
+            "link": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "#",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "label": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "Returns",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "openInNewTab": false
+          },
+          {
+            "link": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "#",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "label": {
+              "field": "",
+              "constantValue": {
+                "defaultValue": "Contact",
+                "hasLocalizedValue": "true"
+              },
+              "constantValueEnabled": true
+            },
+            "openInNewTab": false
+          }
+        ],
+        "footerLinksStyles": {
+          "fontSize": "16px",
+          "fontStyle": "default",
+          "fontFamily": "default",
+          "fontWeight": "400",
+          "textTransform": "uppercase"
+        }
+      }
+    }
+  ]
+}
