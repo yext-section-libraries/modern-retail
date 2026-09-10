@@ -1,5 +1,5 @@
 {
   "id": "modern-retail-locator",
   "displayName": "Locator",
-  "pageGroupType": "LOCATOR"
+  "pageSetType": "LOCATOR"
 }
