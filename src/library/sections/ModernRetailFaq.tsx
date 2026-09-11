@@ -4,15 +4,14 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
 import {
+  Background,
   createItemSource,
   EntityField,
-  MaybeRTF,
   getDefaultRTF,
   getAnalyticsScopeHash,
-  getDefaultForegroundColor,
+  getSurfaceColorStyle,
   getThemeColorCssValue as resolveThemeColorCssValue,
   resolveComponentData,
-  type RichText,
   type StyledTextValue,
   type ThemeColor,
   type TranslatableRichText,
@@ -23,6 +22,10 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  getTextStyles as getSharedTextStyle,
+  renderResolvedRichText,
+} from "../shared/sectionHelpers";
 
 type SharedTextFieldValue = {
   text: YextEntityField<TranslatableString>;
@@ -52,24 +55,6 @@ type ModernRetailFaqProps = {
   activeFaqFontColor?: ThemeColor;
   faqs: typeof faqSource.value;
 };
-
-const resolveSurfaceForegroundColor = (
-  surfaceColor?: ThemeColor,
-): string | undefined =>
-  resolveThemeColorCssValue(getDefaultForegroundColor(surfaceColor));
-
-const getSharedTextStyle = (
-  styles: StyledTextValue,
-  color?: ThemeColor,
-): React.CSSProperties => ({
-  color: resolveThemeColorCssValue(color),
-  fontFamily: styles.fontFamily === "default" ? undefined : styles.fontFamily,
-  fontSize: styles.fontSize === "default" ? undefined : styles.fontSize,
-  fontStyle: styles.fontStyle === "default" ? undefined : styles.fontStyle,
-  fontWeight: styles.fontWeight === "default" ? undefined : styles.fontWeight,
-  textTransform:
-    styles.textTransform === "default" ? undefined : styles.textTransform,
-});
 
 const defaultHeading: SharedTextFieldValue = {
   text: {
@@ -275,6 +260,10 @@ const ModernRetailFaqComponent: PuckComponent<ModernRetailFaqProps> = (
   const locale = streamDocument?.locale ?? "en";
   const resolvedHeadingText =
     resolveComponentData(props.heading.text, locale, streamDocument) || "";
+  const sectionStyle = getSurfaceColorStyle(
+    props.section.backgroundColor,
+    streamDocument,
+  );
   const faqs = faqSource
     .resolveItems(props.faqs, streamDocument)
     .map((item) => {
@@ -284,12 +273,7 @@ const ModernRetailFaqComponent: PuckComponent<ModernRetailFaqProps> = (
           })
         : "";
       const resolvedAnswer = item.answer
-        ? resolveComponentData(item.answer, locale, streamDocument, {
-            richTextStyleOverrides: {
-              ...props.answer.styles,
-              color: resolveThemeColorCssValue(props.answer.fontColor),
-            },
-          })
+        ? resolveComponentData(item.answer, locale, streamDocument)
         : undefined;
 
       return {
@@ -341,13 +325,12 @@ const ModernRetailFaqComponent: PuckComponent<ModernRetailFaqProps> = (
             margin: 0;
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           className="ps-faq-shell"
           style={{
-            backgroundColor: resolveThemeColorCssValue(
-              props.section.backgroundColor,
-            ),
-            color: resolveSurfaceForegroundColor(props.section.backgroundColor),
+            ...sectionStyle,
             padding: "48px 0",
           }}
         >
@@ -446,24 +429,14 @@ const ModernRetailFaqComponent: PuckComponent<ModernRetailFaqProps> = (
                                 ),
                             }}
                           >
-                            {React.isValidElement(faq.resolvedAnswer) ? (
-                              faq.resolvedAnswer
-                            ) : (
-                              <MaybeRTF
-                                data={
-                                  faq.resolvedAnswer as
-                                    string | RichText | undefined
-                                }
-                                richTextStyleOverrides={{
-                                  ...props.answer.styles,
-                                  color:
-                                    activeColor ??
-                                    resolveThemeColorCssValue(
-                                      props.answer.fontColor,
-                                    ),
-                                }}
-                              />
-                            )}
+                            {renderResolvedRichText(faq.resolvedAnswer, {
+                              ...props.answer.styles,
+                              color:
+                                activeColor ??
+                                resolveThemeColorCssValue(
+                                  props.answer.fontColor,
+                                ),
+                            })}
                           </div>
                         </div>
                       </article>
@@ -473,7 +446,7 @@ const ModernRetailFaqComponent: PuckComponent<ModernRetailFaqProps> = (
               </EntityField>
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     </AnalyticsScopeProvider>
   );

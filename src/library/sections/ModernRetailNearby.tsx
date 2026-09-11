@@ -4,10 +4,12 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider, Link } from "@yext/pages-components";
 import {
+  Background,
   EntityField,
   getAnalyticsScopeHash,
   getDefaultForegroundColor,
   getPreferredDistanceUnit,
+  getSurfaceColorStyle,
   getThemeColorCssValue as resolveThemeColorCssValue,
   MapboxStaticMapComponent,
   mapboxStaticMapStyleOptions,
@@ -395,23 +397,14 @@ const NearbySectionShell = ({
   helperText?: string;
   streamDocument: StreamDocumentShape;
 }) => {
-  const sectionForeground = resolveSurfaceForegroundColor(props.section.backgroundColor);
+  const sectionForeground = getSurfaceColorStyle(
+    props.section.backgroundColor,
+    streamDocument,
+  )?.color;
   const cardForeground =
     resolveSurfaceForegroundColor(defaultCardBackgroundColor) ?? sectionForeground;
   const buttonColor = resolveThemeColorCssValue(button.textColor) ?? cardForeground;
   const buttonBackgroundColor = resolveThemeColorCssValue(button.backgroundColor);
-  const iframe =
-    typeof document === "undefined"
-      ? null
-      : (document.querySelector("iframe") as HTMLIFrameElement | null);
-  let mapboxApiKey = streamDocument._env?.YEXT_MAPBOX_API_KEY;
-  if (
-    iframe?.contentDocument &&
-    streamDocument._env?.YEXT_EDIT_LAYOUT_MODE_MAPBOX_API_KEY
-  ) {
-    mapboxApiKey = streamDocument._env.YEXT_EDIT_LAYOUT_MODE_MAPBOX_API_KEY;
-  }
-
   return (
     <div className="nearby-stores">
       <EntityField
@@ -851,14 +844,17 @@ const ModernRetailNearbyComponent: PuckComponent<NearbyProps> = (props) => {
     }
   `;
 
+  const sectionStyle = getSurfaceColorStyle(
+    props.section.backgroundColor,
+    streamDocument,
+  );
   const renderShell = (helperText?: string, shellLocations = locations) => (
-    <section
+    <Background
+      as="section"
+      background={props.section.backgroundColor}
       id="theme-section-template--25351194706234__section_nearby_stores"
       className="theme-section"
-      style={{
-        backgroundColor: resolveThemeColorCssValue(props.section.backgroundColor),
-        color: resolveSurfaceForegroundColor(props.section.backgroundColor),
-      }}
+      style={sectionStyle}
     >
       <div className="ps-nearby-layout color-scheme-1">
         <NearbySectionShell
@@ -871,7 +867,7 @@ const ModernRetailNearbyComponent: PuckComponent<NearbyProps> = (props) => {
           streamDocument={streamDocument}
         />
       </div>
-    </section>
+    </Background>
   );
 
   if (!enabledNearbyLocations) {

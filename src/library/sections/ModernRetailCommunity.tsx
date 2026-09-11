@@ -4,21 +4,19 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   EntityField,
   getDefaultRTF,
   getAnalyticsScopeHash,
-  getDefaultForegroundColor,
+  getSurfaceColorStyle,
   getThemeColorCssValue as resolveThemeColorCssValue,
   Image,
-  MaybeRTF,
   resolveComponentData,
   type ComprehensiveCTAValue,
-  type RichText,
   type StyledImageValue,
   type StyledTextValue,
   type ThemeColor,
-  ThemeOptions,
   type TranslatableAssetImage,
   type TranslatableRichText,
   type TranslatableString,
@@ -28,6 +26,10 @@ import {
   useDocument,
   VisibilityWrapper,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  renderResolvedRichText,
+} from "../shared/sectionHelpers";
 
 type StreamDocumentShape = {
   locale?: string;
@@ -65,11 +67,6 @@ type ModernRetailCommunityProps = {
 
 const communityImageUrl =
   "https://a.mktgcdn.com/p/Qdlacb36DqN5Lt3q6V9jw-qSMmbPyl_AeMEI_CyDkHc/1267x1900.jpg";
-
-const resolveSurfaceForegroundColor = (
-  surfaceColor?: ThemeColor,
-): string | undefined =>
-  resolveThemeColorCssValue(getDefaultForegroundColor(surfaceColor));
 
 const defaultSectionImage: SharedImageFieldValue = {
   image: {
@@ -205,7 +202,7 @@ const communityFields: YextFields<ModernRetailCommunityProps> = {
       aspectRatio: {
         label: "Aspect Ratio",
         type: "basicSelector",
-        options: ThemeOptions.ASPECT_RATIO,
+        options: aspectRatioOptions,
       },
       imageConstrain: {
         label: "Image Constrain",
@@ -287,8 +284,10 @@ const ModernRetailCommunityComponent: PuckComponent<
   );
   const resolvedHeadingText =
     resolveComponentData(props.heading.text, locale, streamDocument) || "";
-  const sectionForeground =
-    resolveSurfaceForegroundColor(props.section.backgroundColor);
+  const sectionStyle = getSurfaceColorStyle(
+    props.section.backgroundColor,
+    streamDocument,
+  );
   const overlayForegroundColor: ThemeColor = {
     selectedColor: "white",
     contrastingColor: "black",
@@ -301,28 +300,12 @@ const ModernRetailCommunityComponent: PuckComponent<
     props.body.text,
     locale,
     streamDocument,
-    {
-      richTextStyleOverrides: {
-        ...props.body.styles,
-        color:
-          resolveThemeColorCssValue(props.body.fontColor) ??
-          overlayForeground,
-      },
-    },
   );
-  const bodyContent = React.isValidElement(resolvedBody) ? (
-    resolvedBody
-  ) : (
-    <MaybeRTF
-      data={resolvedBody as string | RichText | undefined}
-      richTextStyleOverrides={{
-        ...props.body.styles,
-        color:
-          resolveThemeColorCssValue(props.body.fontColor) ??
-          overlayForeground,
-      }}
-    />
-  );
+  const bodyContent = renderResolvedRichText(resolvedBody, {
+    ...props.body.styles,
+    color:
+      resolveThemeColorCssValue(props.body.fontColor) ?? overlayForeground,
+  });
   const ctaValue: Partial<ComprehensiveCTAValue> = {
     data: props.cta.data,
     styles: {
@@ -436,12 +419,13 @@ const ModernRetailCommunityComponent: PuckComponent<
             }
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           id="theme-section-template--25351194706234__section_image_banner_blocks_wqPDfX"
           className="theme-section ps-community-shell"
           style={{
-            backgroundColor: resolveThemeColorCssValue(props.section.backgroundColor),
-            color: sectionForeground,
+            ...sectionStyle,
             minHeight: "420px",
             overflow: "hidden",
             position: "relative",
@@ -553,7 +537,7 @@ const ModernRetailCommunityComponent: PuckComponent<
               </div>
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     </AnalyticsScopeProvider>
   );

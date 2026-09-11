@@ -4,9 +4,10 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider, Link } from "@yext/pages-components";
 import {
+  Background,
   EntityField,
   getAnalyticsScopeHash,
-  getDefaultForegroundColor,
+  getSurfaceColorStyle,
   getThemeColorCssValue as resolveThemeColorCssValue,
   resolveBreadcrumbs,
   resolveComponentData,
@@ -20,6 +21,7 @@ import {
   useTemplateProps,
   VisibilityWrapper,
 } from "@yext/visual-editor";
+import { getTextStyles } from "../shared/sectionHelpers";
 
 type StreamDocumentShape = {
   locale?: string;
@@ -64,24 +66,6 @@ type RenderBreadcrumb = {
   isCurrentPage: boolean;
   isRoot: boolean;
 };
-
-const resolveSurfaceForegroundColor = (
-  surfaceColor?: ThemeColor,
-): string | undefined =>
-  resolveThemeColorCssValue(getDefaultForegroundColor(surfaceColor));
-
-const getTextStyles = (
-  styles: StyledTextValue,
-  color?: ThemeColor,
-): React.CSSProperties => ({
-  color: resolveThemeColorCssValue(color),
-  fontFamily: styles.fontFamily === "default" ? undefined : styles.fontFamily,
-  fontSize: styles.fontSize === "default" ? undefined : styles.fontSize,
-  fontStyle: styles.fontStyle === "default" ? undefined : styles.fontStyle,
-  fontWeight: styles.fontWeight === "default" ? undefined : styles.fontWeight,
-  textTransform:
-    styles.textTransform === "default" ? undefined : styles.textTransform,
-});
 
 const normalizeText = (value: unknown): string =>
   typeof value === "string" ? value.trim() : "";
@@ -227,9 +211,11 @@ const ModernRetailBreadcrumbsComponent: PuckComponent<
   const currentPageLabel =
     normalizeText(streamDocument.name) ||
     normalizeText(streamDocument.address?.line1);
-  const sectionForeground = resolveSurfaceForegroundColor(
+  const sectionStyle = getSurfaceColorStyle(
     props.section.backgroundColor,
+    streamDocument,
   );
+  const sectionForeground = sectionStyle?.color;
   const resolvedBreadcrumbs = (resolveBreadcrumbs(streamDocument) ?? [])
     .map((item): ResolvedBreadcrumb => {
       const candidate = item as { name?: unknown; slug?: unknown };
@@ -359,15 +345,12 @@ const ModernRetailBreadcrumbsComponent: PuckComponent<
         isEditing={props.puck.isEditing}
       >
         <style>{breadcrumbsStyles}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           id="theme-section-template--25351194706234__section_breadcrumbs"
           className="theme-section"
-          style={{
-            backgroundColor: resolveThemeColorCssValue(
-              props.section.backgroundColor,
-            ),
-            color: sectionForeground,
-          }}
+          style={sectionStyle}
         >
           <div
             className="ps-breadcrumbs-layout"
@@ -462,7 +445,7 @@ const ModernRetailBreadcrumbsComponent: PuckComponent<
               })}
             </ol>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     </AnalyticsScopeProvider>
   );

@@ -4,13 +4,13 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   createItemSource,
   EntityField,
   getAnalyticsScopeHash,
   getDefaultRTF,
-  getDefaultForegroundColor,
-  getThemeColorCssValue as resolveThemeColorCssValue,
+  getSurfaceColorStyle,
   Image,
   MaybeRTF,
   resolveComponentData,
@@ -19,7 +19,6 @@ import {
   type StyledImageValue,
   type StyledTextValue,
   type ThemeColor,
-  ThemeOptions,
   type TranslatableAssetImage,
   type TranslatableRichText,
   type TranslatableString,
@@ -29,6 +28,10 @@ import {
   useDocument,
   VisibilityWrapper,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  getTextStyles,
+} from "../shared/sectionHelpers";
 
 type StreamDocumentShape = {
   locale?: string;
@@ -75,11 +78,6 @@ type ModernRetailServicesProps = {
   };
 };
 
-const resolveSurfaceForegroundColor = (
-  surfaceColor?: ThemeColor,
-): string | undefined =>
-  resolveThemeColorCssValue(getDefaultForegroundColor(surfaceColor));
-
 const getSurfaceContrastColor = (
   surfaceColor?: ThemeColor,
 ): ThemeColor | undefined =>
@@ -89,19 +87,6 @@ const getSurfaceContrastColor = (
         contrastingColor: surfaceColor.selectedColor,
       }
     : undefined;
-
-const getTextStyles = (
-  styles: StyledTextValue,
-  color?: ThemeColor,
-): React.CSSProperties => ({
-  color: resolveThemeColorCssValue(color),
-  fontFamily: styles.fontFamily === "default" ? undefined : styles.fontFamily,
-  fontSize: styles.fontSize === "default" ? undefined : styles.fontSize,
-  fontStyle: styles.fontStyle === "default" ? undefined : styles.fontStyle,
-  fontWeight: styles.fontWeight === "default" ? undefined : styles.fontWeight,
-  textTransform:
-    styles.textTransform === "default" ? undefined : styles.textTransform,
-});
 
 const defaultHeading: ModernRetailServicesProps["data"]["heading"] = {
   field: "",
@@ -502,7 +487,7 @@ const servicesFields: YextFields<ModernRetailServicesProps> = {
           aspectRatio: {
             label: "Aspect Ratio",
             type: "basicSelector",
-            options: ThemeOptions.ASPECT_RATIO,
+            options: aspectRatioOptions,
           },
           imageConstrain: {
             label: "Image Constrain",
@@ -534,18 +519,15 @@ const ModernRetailServicesComponent: PuckComponent<
   const locale = streamDocument.locale ?? "en";
   const resolvedHeadingText =
     resolveComponentData(props.data.heading, locale, streamDocument) || "";
-  const sectionForeground = resolveSurfaceForegroundColor(
+  const sectionStyle = getSurfaceColorStyle(
     props.section.backgroundColor,
+    streamDocument,
   );
-  const sectionBackgroundColor = resolveThemeColorCssValue(
-    props.section.backgroundColor,
-  );
-  const cardBackgroundColor = resolveThemeColorCssValue(
+  const cardStyle = getSurfaceColorStyle(
     props.section.cardBackgroundColor,
+    streamDocument,
   );
-  const cardForeground = resolveSurfaceForegroundColor(
-    props.section.cardBackgroundColor,
-  );
+  const cardBackgroundColor = cardStyle?.backgroundColor;
   const cardCtaColor = getSurfaceContrastColor(
     props.section.cardBackgroundColor,
   );
@@ -676,13 +658,12 @@ const ModernRetailServicesComponent: PuckComponent<
             }
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           id="theme-section-template--25351194706234__section_store_services"
           className="theme-section ps-services-shell"
-          style={{
-            backgroundColor: sectionBackgroundColor,
-            color: sectionForeground,
-          }}
+          style={sectionStyle}
         >
           <div
             className="ps-services-layout color-scheme-1"
@@ -789,11 +770,11 @@ const ModernRetailServicesComponent: PuckComponent<
                           ) : null}
                         </div>
                       ) : null}
-                      <div
+                      <Background
+                        background={props.section.cardBackgroundColor}
                         className="store-services-showcase__content color-scheme-5"
                         style={{
-                          backgroundColor: cardBackgroundColor,
-                          color: cardForeground,
+                          ...cardStyle,
                           display: "grid",
                           gap: "16px",
                           padding: "24px",
@@ -849,14 +830,14 @@ const ModernRetailServicesComponent: PuckComponent<
                             }
                           />
                         </EntityField>
-                      </div>
+                      </Background>
                     </article>
                   ))}
                 </div>
               </EntityField>
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     </AnalyticsScopeProvider>
   );

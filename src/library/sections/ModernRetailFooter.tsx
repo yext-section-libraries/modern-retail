@@ -4,16 +4,15 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider, Link } from "@yext/pages-components";
 import {
+  Background,
   EntityField,
   getAnalyticsScopeHash,
-  getDefaultForegroundColor,
+  getSurfaceColorStyle,
   getThemeColorCssValue as resolveThemeColorCssValue,
   Image,
-  resolveComponentData,
   type StyledImageValue,
   type StyledTextValue,
   type ThemeColor,
-  ThemeOptions,
   type TranslatableAssetImage,
   type TranslatableString,
   type YextComponentConfig,
@@ -22,6 +21,15 @@ import {
   useDocument,
   VisibilityWrapper,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  getTextStyles,
+  resolveImageConstantValue,
+  resolveImageFieldValue,
+  resolveTextConstantValue,
+  resolveTextFieldValue,
+  toRenderableText,
+} from "../shared/sectionHelpers";
 
 type StreamDocumentShape = {
   locale?: string;
@@ -68,11 +76,6 @@ const defaultSectionBackgroundColor: ThemeColor = {
   selectedColor: "palette-secondary",
   contrastingColor: "palette-secondary-contrast",
 };
-
-const resolveSurfaceForegroundColor = (
-  surfaceColor?: ThemeColor,
-): string | undefined =>
-  resolveThemeColorCssValue(getDefaultForegroundColor(surfaceColor));
 
 const editorFieldStackStyle: React.CSSProperties = {
   display: "grid",
@@ -150,102 +153,6 @@ const SegmentedSourceField = ({
     </div>
   );
 };
-
-const toRenderableText = (value: unknown, fallback = "") => {
-  if (typeof value === "string" || typeof value === "number") {
-    return String(value);
-  }
-
-  if (value && typeof value === "object") {
-    if ("text" in (value as Record<string, unknown>)) {
-      const text = (value as Record<string, unknown>).text;
-      if (typeof text === "string" || typeof text === "number") {
-        return String(text);
-      }
-    }
-
-    if ("defaultValue" in (value as Record<string, unknown>)) {
-      const defaultValue = (value as Record<string, unknown>).defaultValue;
-      if (
-        typeof defaultValue === "string" ||
-        typeof defaultValue === "number"
-      ) {
-        return String(defaultValue);
-      }
-    }
-  }
-
-  return fallback;
-};
-
-const resolveTextConstantValue = (
-  field: YextEntityField<TranslatableString>,
-  locale: string,
-  streamDocument: StreamDocumentShape,
-) =>
-  toRenderableText(
-    resolveComponentData(
-      {
-        field: "",
-        constantValue: field.constantValue,
-        constantValueEnabled: true,
-      } as YextEntityField<TranslatableString>,
-      locale,
-      streamDocument,
-    ),
-    toRenderableText(field.constantValue, ""),
-  ).trim();
-
-const resolveTextFieldValue = (
-  field: YextEntityField<TranslatableString>,
-  locale: string,
-  streamDocument: StreamDocumentShape,
-) =>
-  toRenderableText(
-    resolveComponentData(field, locale, streamDocument),
-    resolveTextConstantValue(field, locale, streamDocument),
-  ).trim();
-
-const getSharedTextStyle = (
-  styles: StyledTextValue,
-  color: string | undefined,
-): React.CSSProperties => ({
-  color,
-  fontFamily: styles.fontFamily === "default" ? undefined : styles.fontFamily,
-  fontSize: styles.fontSize === "default" ? undefined : styles.fontSize,
-  fontStyle: styles.fontStyle === "default" ? undefined : styles.fontStyle,
-  fontWeight: styles.fontWeight === "default" ? undefined : styles.fontWeight,
-  textTransform:
-    styles.textTransform === "default" ? undefined : styles.textTransform,
-});
-
-const resolveImageConstantValue = (
-  field: YextEntityField<TranslatableAssetImage>,
-  locale: string,
-  streamDocument: StreamDocumentShape,
-) =>
-  (resolveComponentData(
-    {
-      field: "",
-      constantValue: field.constantValue,
-      constantValueEnabled: true,
-    } as YextEntityField<TranslatableAssetImage>,
-    locale,
-    streamDocument,
-  ) ??
-    field.constantValue) as
-    | Exclude<TranslatableAssetImage, undefined>
-    | undefined;
-
-const resolveImageFieldValue = (
-  field: YextEntityField<TranslatableAssetImage>,
-  locale: string,
-  streamDocument: StreamDocumentShape,
-) =>
-  (resolveComponentData(field, locale, streamDocument) ??
-    resolveImageConstantValue(field, locale, streamDocument)) as
-    | Exclude<TranslatableAssetImage, undefined>
-    | undefined;
 
 const defaultBrandName: SharedTextFieldValue = {
   text: {
@@ -393,7 +300,7 @@ const footerFields: YextFields<ModernRetailFooterProps> = {
           aspectRatio: {
             label: "Aspect Ratio",
             type: "basicSelector",
-            options: ThemeOptions.ASPECT_RATIO,
+            options: aspectRatioOptions,
           },
           imageConstrain: {
             label: "Image Constrain",
@@ -468,10 +375,12 @@ const ModernRetailFooterComponent: PuckComponent<ModernRetailFooterProps> = (
   const locale = streamDocument.locale ?? "en";
   const sectionBackgroundColor =
     props.section.backgroundColor ?? defaultSectionBackgroundColor;
-  const footerBackgroundColor =
-    resolveThemeColorCssValue(sectionBackgroundColor);
-  const footerForegroundColor =
-    resolveSurfaceForegroundColor(sectionBackgroundColor);
+  const footerStyle = getSurfaceColorStyle(
+    sectionBackgroundColor,
+    streamDocument,
+  );
+  const footerBackgroundColor = footerStyle?.backgroundColor;
+  const footerForegroundColor = footerStyle?.color;
   const entityBrandName = resolveTextFieldValue(
     props.brand.name.text,
     locale,
@@ -498,11 +407,12 @@ const ModernRetailFooterComponent: PuckComponent<ModernRetailFooterProps> = (
   const brandNameColor =
     resolveThemeColorCssValue(props.brand.name.fontColor) ?? footerForegroundColor;
   const brandNameStyle: React.CSSProperties = {
-    ...getSharedTextStyle(props.brand.name.styles, brandNameColor),
+    ...getTextStyles(props.brand.name.styles, undefined, brandNameColor),
     letterSpacing: "0.14em",
   };
-  const footerLinkStyle = getSharedTextStyle(
+  const footerLinkStyle = getTextStyles(
     props.footerLinksStyles,
+    undefined,
     footerForegroundColor,
   );
   const brandLogoWrapperStyle: React.CSSProperties = {
@@ -658,13 +568,11 @@ const ModernRetailFooterComponent: PuckComponent<ModernRetailFooterProps> = (
             }
           }
         `}</style>
-        <div
+        <Background
+          background={sectionBackgroundColor}
           id="theme-section-sections--25351194345786__footer"
           className="theme-section theme-section-group-footer-group"
-          style={{
-            backgroundColor: footerBackgroundColor,
-            color: footerForegroundColor,
-          }}
+          style={footerStyle}
         >
           <div
             className=""
@@ -797,7 +705,7 @@ const ModernRetailFooterComponent: PuckComponent<ModernRetailFooterProps> = (
               </div>
             </footer>
           </div>
-        </div>
+        </Background>
       </VisibilityWrapper>
     </AnalyticsScopeProvider>
   );

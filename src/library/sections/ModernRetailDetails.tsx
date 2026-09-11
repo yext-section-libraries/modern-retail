@@ -14,11 +14,12 @@ import {
   type StatusParams,
 } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   createItemSource,
   EntityField,
   getAnalyticsScopeHash,
-  getDefaultForegroundColor,
+  getSurfaceColorStyle,
   getThemeColorCssValue as resolveThemeColorCssValue,
   resolveComponentData,
   type ComprehensiveCTAValue,
@@ -31,6 +32,7 @@ import {
   useDocument,
   VisibilityWrapper,
 } from "@yext/visual-editor";
+import { getTextStyles as getSharedTextStyle } from "../shared/sectionHelpers";
 
 type StreamDocumentShape = {
   businessId?: string | number;
@@ -140,24 +142,6 @@ type ModernRetailDetailsProps = {
     };
   };
 };
-
-const resolveSurfaceForegroundColor = (
-  surfaceColor?: ThemeColor,
-): string | undefined =>
-  resolveThemeColorCssValue(getDefaultForegroundColor(surfaceColor));
-
-const getSharedTextStyle = (
-  styles: StyledTextValue,
-  color?: ThemeColor,
-): React.CSSProperties => ({
-  color: resolveThemeColorCssValue(color),
-  fontFamily: styles.fontFamily === "default" ? undefined : styles.fontFamily,
-  fontSize: styles.fontSize === "default" ? undefined : styles.fontSize,
-  fontStyle: styles.fontStyle === "default" ? undefined : styles.fontStyle,
-  fontWeight: styles.fontWeight === "default" ? undefined : styles.fontWeight,
-  textTransform:
-    styles.textTransform === "default" ? undefined : styles.textTransform,
-});
 
 const formatPhoneValue = (
   phoneNumberString: string,
@@ -819,15 +803,17 @@ const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
   const streamDocument =
     (useDocument() as StreamDocumentShape | undefined) ?? {};
   const locale = streamDocument.locale ?? "en";
+  const sectionStyle = getSurfaceColorStyle(
+    props.section.backgroundColor,
+    streamDocument,
+  );
+  const cardStyle = getSurfaceColorStyle(
+    props.section.cardBackgroundColor,
+    streamDocument,
+  );
   const headingColor =
     resolveThemeColorCssValue(props.styles.sectionHeading.fontColor) ||
-    resolveSurfaceForegroundColor(props.section.backgroundColor);
-  const cardForeground = resolveSurfaceForegroundColor(
-    props.section.cardBackgroundColor,
-  );
-  const cardBackgroundColor = resolveThemeColorCssValue(
-    props.section.cardBackgroundColor,
-  );
+    sectionStyle?.color;
   const resolvedHeadingText =
     resolveComponentData(props.data.sectionHeading, locale, streamDocument) ||
     "";
@@ -983,13 +969,13 @@ const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
             }
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           className="ps-details-shell"
           id="modern-retail-location-details"
           style={{
-            backgroundColor: resolveThemeColorCssValue(
-              props.section.backgroundColor,
-            ),
+            ...sectionStyle,
             color: headingColor,
             padding: "48px 0",
           }}
@@ -1027,11 +1013,11 @@ const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
                 gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
               }}
             >
-              <article
+              <Background
+                background={props.section.cardBackgroundColor}
                 className="border border-current/10"
                 style={{
-                  backgroundColor: cardBackgroundColor,
-                  color: cardForeground,
+                  ...cardStyle,
                   display: "grid",
                   gap: "24px",
                   padding: "24px",
@@ -1247,12 +1233,12 @@ const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
                     );
                   })}
                 </div>
-              </article>
-              <article
+              </Background>
+              <Background
+                background={props.section.cardBackgroundColor}
                 className="border border-current/10"
                 style={{
-                  backgroundColor: cardBackgroundColor,
-                  color: cardForeground,
+                  ...cardStyle,
                   display: "grid",
                   gap: "24px",
                   padding: "24px",
@@ -1414,12 +1400,12 @@ const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
                     </div>
                   </EntityField>
                 ) : null}
-              </article>
-              <article
+              </Background>
+              <Background
+                background={props.section.cardBackgroundColor}
                 className="ps-services-card border border-current/10"
                 style={{
-                  backgroundColor: cardBackgroundColor,
-                  color: cardForeground,
+                  ...cardStyle,
                   display: "grid",
                   gap: "24px",
                   padding: "24px",
@@ -1496,10 +1482,10 @@ const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
                     ))}
                   </ul>
                 </EntityField>
-              </article>
+              </Background>
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     </AnalyticsScopeProvider>
   );

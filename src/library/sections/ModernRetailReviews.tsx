@@ -4,10 +4,11 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
 import {
+  Background,
   EntityField,
   getAggregateRating,
   getAnalyticsScopeHash,
-  getDefaultForegroundColor,
+  getSurfaceColorStyle,
   getThemeColorCssValue as resolveThemeColorCssValue,
   resolveComponentData,
   type StyledTextValue,
@@ -60,11 +61,6 @@ type ModernRetailReviewsProps = {
 };
 
 const REVIEW_PUBLISHER_VALUE = "FIRSTPARTY" as const;
-
-const resolveSurfaceForegroundColor = (
-  surfaceColor?: ThemeColor,
-): string | undefined =>
-  resolveThemeColorCssValue(getDefaultForegroundColor(surfaceColor));
 
 const defaultHeading: ModernRetailReviewsProps["heading"] = {
   text: {
@@ -248,10 +244,16 @@ const ModernRetailReviewsComponent: PuckComponent<ModernRetailReviewsProps> = (
     : undefined;
   const resolvedHeadingText =
     resolveComponentData(props.heading.text, locale, streamDocument) || "";
-  const sectionForeground =
-    resolveSurfaceForegroundColor(props.section.backgroundColor);
-  const cardForeground =
-    resolveSurfaceForegroundColor(props.cardBackgroundColor) ?? sectionForeground;
+  const sectionStyle = getSurfaceColorStyle(
+    props.section.backgroundColor,
+    streamDocument,
+  );
+  const cardStyle = getSurfaceColorStyle(
+    props.cardBackgroundColor,
+    streamDocument,
+  );
+  const sectionForeground = sectionStyle?.color;
+  const cardForeground = cardStyle?.color ?? sectionForeground;
 
   const topReviews = Array.isArray(firstPartyAggregate?.topReviews)
     ? firstPartyAggregate.topReviews
@@ -468,13 +470,12 @@ const ModernRetailReviewsComponent: PuckComponent<ModernRetailReviewsProps> = (
             }
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           id="theme-section-template--25351194706234__section_reviews"
           className="theme-section"
-          style={{
-            backgroundColor: resolveThemeColorCssValue(props.section.backgroundColor),
-            color: sectionForeground,
-          }}
+          style={sectionStyle}
         >
           <div className="ps-reviews-layout color-scheme-1">
             <div className="reviews-showcase">
@@ -555,49 +556,48 @@ const ModernRetailReviewsComponent: PuckComponent<ModernRetailReviewsProps> = (
               </div>
               <div className="reviews-showcase__list">
                 {displayedReviews.map((review) => (
-                  <article
-                    key={review.key}
-                    className="reviews-showcase__card background-secondary"
-                    style={{
-                      backgroundColor: resolveThemeColorCssValue(props.cardBackgroundColor),
-                      color: cardForeground,
-                    }}
-                  >
-                    <div className="reviews-showcase__card-header">
-                      <h3
-                        className="reviews-showcase__name heading-font"
-                        style={{ margin: 0 }}
-                      >
-                        {review.authorName}
-                      </h3>
-                      <div className="reviews-showcase__rating">
-                        {review.stars ? (
-                          <span
-                            aria-hidden
-                            className="reviews-showcase__stars"
-                            style={{ color: cardStarColor }}
-                          >
-                            {review.stars}
-                          </span>
-                        ) : null}
-                        {review.ratingText || review.reviewDate ? (
-                          <span className="reviews-showcase__rating-text">
-                            {[review.ratingText, review.reviewDate]
-                              .filter((value) => value.length > 0)
-                              .join(" | ")}
-                          </span>
-                        ) : null}
+                  <article key={review.key}>
+                    <Background
+                      background={props.cardBackgroundColor}
+                      className="reviews-showcase__card background-secondary"
+                      style={cardStyle}
+                    >
+                      <div className="reviews-showcase__card-header">
+                        <h3
+                          className="reviews-showcase__name heading-font"
+                          style={{ margin: 0 }}
+                        >
+                          {review.authorName}
+                        </h3>
+                        <div className="reviews-showcase__rating">
+                          {review.stars ? (
+                            <span
+                              aria-hidden
+                              className="reviews-showcase__stars"
+                              style={{ color: cardStarColor }}
+                            >
+                              {review.stars}
+                            </span>
+                          ) : null}
+                          {review.ratingText || review.reviewDate ? (
+                            <span className="reviews-showcase__rating-text">
+                              {[review.ratingText, review.reviewDate]
+                                .filter((value) => value.length > 0)
+                                .join(" | ")}
+                            </span>
+                          ) : null}
+                        </div>
                       </div>
-                    </div>
-                    {review.body ? (
-                      <p className="reviews-showcase__text">{review.body}</p>
-                    ) : null}
+                      {review.body ? (
+                        <p className="reviews-showcase__text">{review.body}</p>
+                      ) : null}
+                    </Background>
                   </article>
                 ))}
               </div>
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     </AnalyticsScopeProvider>
   );

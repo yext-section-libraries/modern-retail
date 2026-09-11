@@ -1,13 +1,11 @@
 import type { SectionConfig } from "@yext/visual-editor";
 
-import { isValidElement } from "react";
 import { PuckComponent } from "@puckeditor/core";
 import { CircleSlash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   Body,
   EntityField,
-  MaybeRTF,
   PageSection,
   type StyledTextValue,
   type ThemeColor,
@@ -18,11 +16,15 @@ import {
   type YextFields,
   backgroundColors,
   getDefaultRTF,
+  getSurfaceColorStyle,
   resolveComponentData,
   resolveYextEntityField,
-  toPuckFields,
   useDocument,
 } from "@yext/visual-editor";
+import {
+  isRichTextEmpty,
+  renderResolvedRichText,
+} from "../shared/sectionHelpers";
 
 type ModernRetailBannerProps = {
   data: {
@@ -37,23 +39,6 @@ type ModernRetailBannerProps = {
     backgroundColor: ThemeColor;
     visibleOnLivePage: boolean;
   };
-};
-
-const isRichTextEmpty = (value: unknown): boolean => {
-  if (!value) {
-    return true;
-  }
-
-  if (typeof value === "string") {
-    return value.trim() === "";
-  }
-
-  if (typeof value === "object" && "html" in value) {
-    const html = (value as { html?: unknown }).html;
-    return typeof html !== "string" || html.trim() === "";
-  }
-
-  return false;
 };
 
 const ModernRetailBannerFields: YextFields<ModernRetailBannerProps> = {
@@ -123,6 +108,10 @@ const ModernRetailBannerComponent: PuckComponent<ModernRetailBannerProps> = ({
 }) => {
   const { i18n } = useTranslation();
   const streamDocument = useDocument();
+  const sectionStyle = getSurfaceColorStyle(
+    section.backgroundColor,
+    streamDocument,
+  );
   const isMappedField =
     !data.text.constantValueEnabled && Boolean(data.text.field);
 
@@ -140,6 +129,7 @@ const ModernRetailBannerComponent: PuckComponent<ModernRetailBannerProps> = ({
       <PageSection
         background={section.backgroundColor}
         className="flex items-center justify-center"
+        outerStyle={sectionStyle}
         verticalPadding="sm"
       >
         <div className="relative flex h-20 w-full flex-row items-center justify-center gap-3 rounded-lg border border-gray-200 bg-gray-100 px-4">
@@ -165,7 +155,6 @@ const ModernRetailBannerComponent: PuckComponent<ModernRetailBannerProps> = ({
     data.text,
     i18n.language,
     streamDocument,
-    { richTextStyleOverrides },
   );
 
   if (!resolvedText) {
@@ -182,6 +171,7 @@ const ModernRetailBannerComponent: PuckComponent<ModernRetailBannerProps> = ({
           right: "justify-end text-right",
         }[styles.textAlignment]
       }`}
+      outerStyle={sectionStyle}
       verticalPadding="sm"
     >
       <EntityField
@@ -189,14 +179,7 @@ const ModernRetailBannerComponent: PuckComponent<ModernRetailBannerProps> = ({
         displayName="Banner Text"
         fieldId={data.text.field}
       >
-        {isValidElement(resolvedText) ? (
-          resolvedText
-        ) : typeof resolvedText === "string" ? (
-          <MaybeRTF
-            data={resolvedText}
-            richTextStyleOverrides={richTextStyleOverrides}
-          />
-        ) : null}
+        {renderResolvedRichText(resolvedText, richTextStyleOverrides)}
       </EntityField>
     </PageSection>
   );
@@ -207,7 +190,7 @@ const ModernRetailBannerComponent: PuckComponent<ModernRetailBannerProps> = ({
  */
 export const ModernRetailBanner: YextComponentConfig<ModernRetailBannerProps> = {
   label: "Banner",
-  fields: toPuckFields(ModernRetailBannerFields),
+  fields: ModernRetailBannerFields,
   defaultProps: {
     data: {
       text: {

@@ -4,21 +4,18 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   EntityField,
   getDefaultRTF,
   getAnalyticsScopeHash,
-  getDefaultForegroundColor,
-  getThemeColorCssValue as resolveThemeColorCssValue,
+  getSurfaceColorStyle,
   Image,
-  MaybeRTF,
   resolveComponentData,
   type ComprehensiveCTAValue,
-  type RichText,
   type StyledImageValue,
   type StyledTextValue,
   type ThemeColor,
-  ThemeOptions,
   type TranslatableAssetImage,
   type TranslatableRichText,
   type TranslatableString,
@@ -28,6 +25,11 @@ import {
   useDocument,
   VisibilityWrapper,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  getTextStyles,
+  renderResolvedRichText,
+} from "../shared/sectionHelpers";
 
 type StreamDocumentShape = {
   locale?: string;
@@ -66,24 +68,6 @@ type ModernRetailCollectionProps = {
 
 const collectionImageUrl =
   "https://a.mktgcdn.com/p/UHR6VTEvcR-yDMqPSOS7LyK87Qt56EOrmfNbhLQxI08/1267x1900.jpg";
-
-const resolveSurfaceForegroundColor = (
-  surfaceColor?: ThemeColor,
-): string | undefined =>
-  resolveThemeColorCssValue(getDefaultForegroundColor(surfaceColor));
-
-const getTextStyles = (
-  styles: StyledTextValue,
-  color?: ThemeColor,
-): React.CSSProperties => ({
-  color: resolveThemeColorCssValue(color),
-  fontFamily: styles.fontFamily === "default" ? undefined : styles.fontFamily,
-  fontSize: styles.fontSize === "default" ? undefined : styles.fontSize,
-  fontStyle: styles.fontStyle === "default" ? undefined : styles.fontStyle,
-  fontWeight: styles.fontWeight === "default" ? undefined : styles.fontWeight,
-  textTransform:
-    styles.textTransform === "default" ? undefined : styles.textTransform,
-});
 
 const defaultHeading: SharedTextFieldValue = {
   text: {
@@ -266,7 +250,7 @@ const collectionFields: YextFields<ModernRetailCollectionProps> = {
       aspectRatio: {
         label: "Aspect Ratio",
         type: "basicSelector",
-        options: ThemeOptions.ASPECT_RATIO,
+        options: aspectRatioOptions,
       },
       imageConstrain: {
         label: "Image Constrain",
@@ -304,31 +288,24 @@ const ModernRetailCollectionComponent: PuckComponent<
       "url" in resolvedSectionImage &&
       resolvedSectionImage.url,
   );
-  const cardForeground =
-    resolveSurfaceForegroundColor(props.cardBackgroundColor) ??
-    resolveSurfaceForegroundColor(props.section.backgroundColor);
+  const sectionStyle = getSurfaceColorStyle(
+    props.section.backgroundColor,
+    streamDocument,
+  );
+  const cardStyle = getSurfaceColorStyle(
+    props.cardBackgroundColor,
+    streamDocument,
+  );
+  const cardForeground = cardStyle?.color ?? sectionStyle?.color;
   const resolvedBody = resolveComponentData(
     props.body.text,
     locale,
     streamDocument,
-    {
-      richTextStyleOverrides: {
-        ...props.body.styles,
-        color: resolveThemeColorCssValue(props.body.fontColor),
-      },
-    },
   );
-  const bodyContent = React.isValidElement(resolvedBody) ? (
-    resolvedBody
-  ) : (
-    <MaybeRTF
-      data={resolvedBody as string | RichText | undefined}
-      richTextStyleOverrides={{
-        ...props.body.styles,
-        color: resolveThemeColorCssValue(props.body.fontColor),
-      }}
-    />
-  );
+  const bodyContent = renderResolvedRichText(resolvedBody, {
+    ...props.body.styles,
+    color: props.body.fontColor,
+  });
   const ctaValue: Partial<ComprehensiveCTAValue> = {
     data: props.cta.data,
     styles: props.cta.styles,
@@ -443,13 +420,11 @@ const ModernRetailCollectionComponent: PuckComponent<
         }
       `}</style>
         <>
-          <div
+          <Background
+            background={props.section.backgroundColor}
             id="theme-section-template--25351194706234__section_divider_3"
             className="theme-section section-divider"
-            style={{
-              backgroundColor: resolveThemeColorCssValue(props.section.backgroundColor),
-              color: resolveSurfaceForegroundColor(props.section.backgroundColor),
-            }}
+            style={sectionStyle}
           >
             <div className="ps-collection-divider color-scheme-1">
               <div
@@ -457,21 +432,21 @@ const ModernRetailCollectionComponent: PuckComponent<
                 style={{ borderBottom: "1px solid currentColor" }}
               />
             </div>
-          </div>
-          <section
+          </Background>
+          <Background
+            as="section"
+            background={props.section.backgroundColor}
             id="theme-section-template--25351194706234__section_before_and_after_1"
             className="theme-section ps-collection-shell"
-            style={{
-              backgroundColor: resolveThemeColorCssValue(props.section.backgroundColor),
-              color: resolveSurfaceForegroundColor(props.section.backgroundColor),
-            }}
+            style={sectionStyle}
           >
             <div className="ps-collection-layout color-scheme-1">
               <div className="before-and-after">
-                <div
+                <Background
+                  background={props.cardBackgroundColor}
                   className="before-and-after__wrapper"
                   style={{
-                    backgroundColor: resolveThemeColorCssValue(props.cardBackgroundColor),
+                    ...cardStyle,
                     color: cardForeground,
                     gridTemplateColumns: hasSectionImage ? undefined : "1fr",
                   }}
@@ -593,10 +568,10 @@ const ModernRetailCollectionComponent: PuckComponent<
                       </div>
                     </div>
                   ) : null}
-                </div>
+                </Background>
               </div>
             </div>
-          </section>
+          </Background>
         </>
       </VisibilityWrapper>
     </AnalyticsScopeProvider>

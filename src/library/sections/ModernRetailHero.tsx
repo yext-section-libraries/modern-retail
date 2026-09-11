@@ -6,24 +6,21 @@ import {
   AnalyticsScopeProvider,
   HoursStatus,
   type HoursType,
-  Link,
 } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   EntityField,
   getAnalyticsScopeHash,
   getDefaultRTF,
-  getDefaultForegroundColor,
+  getSurfaceColorStyle,
   getThemeColorCssValue as resolveThemeColorCssValue,
   Image,
-  MaybeRTF,
   resolveComponentData,
   type ComprehensiveCTAValue,
-  type RichText,
   type StyledImageValue,
   type StyledTextValue,
   type ThemeColor,
-  ThemeOptions,
   type TranslatableAssetImage,
   type TranslatableRichText,
   type TranslatableString,
@@ -33,6 +30,12 @@ import {
   useDocument,
   VisibilityWrapper,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  renderResolvedRichText,
+  resolveImageFieldValue,
+  resolveTextFieldValue,
+} from "../shared/sectionHelpers";
 
 type StreamDocumentShape = {
   businessId?: string | number;
@@ -143,69 +146,6 @@ const editorNoteStyle: React.CSSProperties = {
   color: "#6b7280",
 };
 
-const SegmentedSourceField = ({
-  label = "Source",
-  value,
-  onChange,
-}: {
-  label?: string;
-  value?: "entity" | "custom";
-  onChange: (value: "entity" | "custom") => void;
-}) => {
-  const currentValue = value ?? "entity";
-  const buttonStyle = (isActive: boolean): React.CSSProperties => ({
-    flex: "1 1 0",
-    minWidth: 0,
-    minHeight: "56px",
-    border: "1px solid #d1d5db",
-    background: isActive ? "#eef3ff" : "#ffffff",
-    color: isActive ? "#0b5fc1" : "#4b5563",
-    fontWeight: isActive ? 600 : 500,
-    fontSize: "14px",
-    lineHeight: 1.2,
-    cursor: "pointer",
-    padding: "8px 10px",
-    whiteSpace: "normal",
-    overflowWrap: "break-word",
-    wordBreak: "normal",
-  });
-
-  return (
-    <div style={editorFieldStackStyle}>
-      <div style={editorFieldHeadingStyle}>{label}</div>
-      <div
-        role="group"
-        aria-label={label}
-        style={{
-          display: "flex",
-          flexWrap: "nowrap",
-          width: "100%",
-          minWidth: 0,
-        }}
-      >
-        <button
-          type="button"
-          onClick={() => onChange("entity")}
-          aria-pressed={currentValue === "entity"}
-          aria-label={`${label}: Knowledge Graph`}
-          style={buttonStyle(currentValue === "entity")}
-        >
-          Knowledge Graph
-        </button>
-        <button
-          type="button"
-          onClick={() => onChange("custom")}
-          aria-pressed={currentValue === "custom"}
-          aria-label={`${label}: Custom`}
-          style={buttonStyle(currentValue === "custom")}
-        >
-          Custom
-        </button>
-      </div>
-    </div>
-  );
-};
-
 const EditorNoteLink = ({
   href,
   children,
@@ -223,11 +163,6 @@ const EditorNoteLink = ({
     {children}
   </a>
 );
-
-const resolveSurfaceForegroundColor = (
-  surfaceColor?: ThemeColor,
-): string | undefined =>
-  resolveThemeColorCssValue(getDefaultForegroundColor(surfaceColor));
 
 const REVIEW_RATING_FIELD_PATH = "ref_reviewsAgg.averageRating" as const;
 const REVIEW_COUNT_FIELD_PATH = "ref_reviewsAgg.reviewCount" as const;
@@ -429,89 +364,6 @@ const ReviewGenerationNotice = () => {
     </div>
   );
 };
-
-const toRenderableText = (value: unknown, fallback = "") => {
-  if (typeof value === "string" || typeof value === "number") {
-    return String(value);
-  }
-
-  if (value && typeof value === "object") {
-    if ("text" in (value as Record<string, unknown>)) {
-      const text = (value as Record<string, unknown>).text;
-      if (typeof text === "string" || typeof text === "number") {
-        return String(text);
-      }
-    }
-
-    if ("defaultValue" in (value as Record<string, unknown>)) {
-      const defaultValue = (value as Record<string, unknown>).defaultValue;
-      if (
-        typeof defaultValue === "string" ||
-        typeof defaultValue === "number"
-      ) {
-        return String(defaultValue);
-      }
-    }
-  }
-
-  return fallback;
-};
-
-const resolveTextConstantValue = (
-  field: YextEntityField<TranslatableString>,
-  locale: string,
-  streamDocument: StreamDocumentShape,
-) =>
-  toRenderableText(
-    resolveComponentData(
-      {
-        field: "",
-        constantValue: field.constantValue,
-        constantValueEnabled: true,
-      } as YextEntityField<TranslatableString>,
-      locale,
-      streamDocument,
-    ),
-    toRenderableText(field.constantValue, ""),
-  ).trim();
-
-const resolveTextFieldValue = (
-  field: YextEntityField<TranslatableString>,
-  locale: string,
-  streamDocument: StreamDocumentShape,
-) =>
-  toRenderableText(
-    resolveComponentData(field, locale, streamDocument),
-    resolveTextConstantValue(field, locale, streamDocument),
-  ).trim();
-
-const resolveImageConstantValue = (
-  field: YextEntityField<TranslatableAssetImage>,
-  locale: string,
-  streamDocument: StreamDocumentShape,
-) =>
-  (resolveComponentData(
-    {
-      field: "",
-      constantValue: field.constantValue,
-      constantValueEnabled: true,
-    } as YextEntityField<TranslatableAssetImage>,
-    locale,
-    streamDocument,
-  ) ??
-    field.constantValue) as
-    | Exclude<TranslatableAssetImage, undefined>
-    | undefined;
-
-const resolveImageFieldValue = (
-  field: YextEntityField<TranslatableAssetImage>,
-  locale: string,
-  streamDocument: StreamDocumentShape,
-) =>
-  (resolveComponentData(field, locale, streamDocument) ??
-    resolveImageConstantValue(field, locale, streamDocument)) as
-    | Exclude<TranslatableAssetImage, undefined>
-    | undefined;
 
 const getKnowledgeGraphEntityHref = (streamDocument: StreamDocumentShape) => {
   const base =
@@ -766,7 +618,7 @@ const heroFields: YextFields<ModernRetailHeroProps> = {
           aspectRatio: {
             label: "Aspect Ratio",
             type: "basicSelector",
-            options: ThemeOptions.ASPECT_RATIO,
+            options: aspectRatioOptions,
           },
           imageConstrain: {
             label: "Image Constrain",
@@ -973,12 +825,16 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
   const streamDocument =
     (useDocument() as StreamDocumentShape | undefined) ?? {};
   const locale = streamDocument.locale ?? "en";
-  const sectionFill =
-    resolveThemeColorCssValue(props.section.backgroundColor);
-  const sectionForeground =
-    resolveSurfaceForegroundColor(props.section.backgroundColor);
-  const heroBackgroundFill =
-    resolveThemeColorCssValue(props.background.solidColor);
+  const sectionStyle = getSurfaceColorStyle(
+    props.section.backgroundColor,
+    streamDocument,
+  );
+  const heroBackgroundStyle = getSurfaceColorStyle(
+    props.background.solidColor,
+    streamDocument,
+  );
+  const sectionForeground = sectionStyle?.color;
+  const heroBackgroundFill = heroBackgroundStyle?.backgroundColor;
   const resolvedBackgroundImage =
     props.background.type === "image"
       ? resolveImageFieldValue(props.background.image.image, locale, streamDocument)
@@ -1037,22 +893,10 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
     props.description.text,
     locale,
     streamDocument,
-    {
-      richTextStyleOverrides: {
-        ...props.description.styles,
-      },
-    },
   );
-  const descriptionContent = React.isValidElement(resolvedDescription) ? (
-    resolvedDescription
-  ) : (
-    <MaybeRTF
-      data={resolvedDescription as string | RichText | undefined}
-      richTextStyleOverrides={{
-        ...props.description.styles,
-      }}
-    />
-  );
+  const descriptionContent = renderResolvedRichText(resolvedDescription, {
+    ...props.description.styles,
+  });
   const resolvedHours = resolveComponentData(
     props.hours,
     locale,
@@ -1199,10 +1043,11 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
           className="ps-hero-shell"
           style={{}}
         >
-          <div
+          <Background
+            background={props.background.solidColor}
             className="ps-hero-layout"
             style={{
-              backgroundColor: heroBackgroundFill,
+              ...heroBackgroundStyle,
               maxHeight: "900px",
               minHeight: "780px",
               position: "relative",
@@ -1253,11 +1098,11 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
                   width: "100%",
                 }}
               >
-                <div
+                <Background
+                  background={props.section.backgroundColor}
                   className="ps-hero-card"
                   style={{
-                    backgroundColor: sectionFill,
-                    color: sectionForeground,
+                    ...sectionStyle,
                     maxWidth: "420px",
                     padding: "28px 28px 24px",
                   }}
@@ -1487,10 +1332,10 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
                       </EntityField>
                     ))}
                   </div>
-                </div>
+                </Background>
               </div>
             </div>
-          </div>
+          </Background>
         </section>
       </VisibilityWrapper>
     </AnalyticsScopeProvider>

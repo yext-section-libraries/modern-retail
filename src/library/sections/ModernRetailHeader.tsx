@@ -11,6 +11,7 @@ import {
   useAnalytics,
 } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   EntityField,
   type ComprehensiveCTAValue,
@@ -27,12 +28,20 @@ import {
   type YextEntityField,
   type YextFields,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
+  getThemeColorCssValue as resolveThemeColorCssValue,
   i18nComponentsInstance,
   isDarkColor,
   normalizeLink,
   resolveComponentData,
   useDocument,
 } from "@yext/visual-editor";
+import {
+  getTextStyles,
+  hasExplicitThemeColor,
+  hasImageSource,
+  resolveBorderRadius,
+} from "../shared/sectionHelpers";
 
 type SharedHeaderVariant =
   | "centerLogoSplitNav"
@@ -140,10 +149,6 @@ const defaultUtilityIconImage: SharedHeaderAction["iconImage"] = {
   },
 };
 
-const hasExplicitThemeColor = (color?: ThemeColor): color is ThemeColor => {
-  return Boolean(color?.selectedColor && color.selectedColor !== "default");
-};
-
 const getReadableForegroundColor = (
   surfaceColor: ThemeColor,
   streamDocument?: StreamDocument,
@@ -151,81 +156,6 @@ const getReadableForegroundColor = (
   return {
     selectedColor: isDarkColor(surfaceColor, streamDocument) ? "white" : "black",
     contrastingColor: surfaceColor.selectedColor,
-  };
-};
-
-const resolveThemeColorCssValue = (color?: ThemeColor): string | undefined => {
-  if (!hasExplicitThemeColor(color)) {
-    return undefined;
-  }
-
-  const customColorMatch = color.selectedColor.match(/^\[(#[0-9A-Fa-f]{3,8})\]$/);
-  if (customColorMatch) {
-    return customColorMatch[1].toUpperCase();
-  }
-
-  switch (color.selectedColor) {
-    case "palette-primary":
-      return "var(--colors-palette-primary)";
-    case "palette-secondary":
-      return "var(--colors-palette-secondary)";
-    case "palette-tertiary":
-      return "var(--colors-palette-tertiary)";
-    case "palette-quaternary":
-      return "var(--colors-palette-quaternary)";
-    case "palette-primary-light":
-      return "hsl(from var(--colors-palette-primary) h s 98)";
-    case "palette-secondary-light":
-      return "hsl(from var(--colors-palette-secondary) h s 98)";
-    case "palette-tertiary-light":
-      return "hsl(from var(--colors-palette-tertiary) h s 98)";
-    case "palette-quaternary-light":
-      return "hsl(from var(--colors-palette-quaternary) h s 98)";
-    case "palette-primary-dark":
-      return "hsl(from var(--colors-palette-primary) h s 20)";
-    case "palette-secondary-dark":
-      return "hsl(from var(--colors-palette-secondary) h s 20)";
-    case "white":
-      return "#FFFFFF";
-    default:
-      return color.selectedColor;
-  }
-};
-
-const resolveBorderRadius = (value?: string): string | undefined => {
-  if (!value || value === "default") {
-    return undefined;
-  }
-
-  return value;
-};
-
-const getTextStyles = ({
-  color,
-  styles,
-}: {
-  color?: ThemeColor;
-  styles: Pick<
-    StyledLinkValue,
-    | "fontFamily"
-    | "fontSize"
-    | "fontWeight"
-    | "fontStyle"
-    | "textTransform"
-    | "letterSpacing"
-  >;
-}): React.CSSProperties => {
-  return {
-    color: resolveThemeColorCssValue(color),
-    fontFamily: styles.fontFamily === "default" ? undefined : styles.fontFamily,
-    fontSize: styles.fontSize === "default" ? undefined : styles.fontSize,
-    fontWeight:
-      styles.fontWeight === "default" ? undefined : styles.fontWeight,
-    fontStyle: styles.fontStyle === "default" ? undefined : styles.fontStyle,
-    textTransform:
-      styles.textTransform === "default" ? undefined : styles.textTransform,
-    letterSpacing:
-      styles.letterSpacing === "default" ? undefined : styles.letterSpacing,
   };
 };
 
@@ -276,31 +206,6 @@ const normalizeResolvedLink = ({
   }
 
   return normalizeLink(link, linkType);
-};
-
-const hasImageSource = (
-  image: ImageType | ComplexImageType | TranslatableAssetImage | undefined,
-): image is ImageType | ComplexImageType | TranslatableAssetImage => {
-  if (!image || typeof image !== "object") {
-    return false;
-  }
-
-  if ("url" in image && typeof image.url === "string" && image.url.trim()) {
-    return true;
-  }
-
-  if (
-    "image" in image &&
-    image.image &&
-    typeof image.image === "object" &&
-    "url" in image.image &&
-    typeof image.image.url === "string" &&
-    image.image.url.trim()
-  ) {
-    return true;
-  }
-
-  return false;
 };
 
 const SharedHeaderDefaultUtilityIcon = () => (
@@ -655,15 +560,19 @@ const ModernRetailHeaderComponent: PuckComponent<ModernRetailHeaderProps> = (pro
       ? props.navigation.fontColor
       : undefined) ??
     getReadableForegroundColor(props.section.backgroundColor, streamDocument);
+  const headerSurfaceStyle = getSurfaceColorStyle(
+    props.section.backgroundColor,
+    streamDocument,
+  );
   const dividerColorValue = resolveThemeColorCssValue(props.section.dividerColor);
   const dividerStyle = dividerColorValue
     ? ({ borderColor: dividerColorValue } as React.CSSProperties)
     : undefined;
 
-  const navigationTextStyles = getTextStyles({
-    color: navigationColor,
-    styles: props.navigation.styles,
-  });
+  const navigationTextStyles = getTextStyles(
+    props.navigation.styles,
+    navigationColor,
+  );
 
   const logoWrapperStyle: React.CSSProperties = {
     height: "50px",
@@ -999,10 +908,12 @@ const ModernRetailHeaderComponent: PuckComponent<ModernRetailHeaderProps> = (pro
       liveVisibility={props.section.visibleOnLivePage}
       isEditing={props.puck.isEditing}
     >
-      <header
+      <Background
+        as="header"
+        background={props.section.backgroundColor}
         className="relative"
         style={{
-          backgroundColor: resolveThemeColorCssValue(props.section.backgroundColor),
+          ...headerSurfaceStyle,
           color: resolveThemeColorCssValue(navigationColor),
         }}
       >
@@ -1067,7 +978,7 @@ const ModernRetailHeaderComponent: PuckComponent<ModernRetailHeaderProps> = (pro
           <div
             className="absolute inset-x-0 top-full z-20 max-h-[calc(100vh-82px)] overflow-y-auto px-6 py-6 md:px-8 lg:hidden"
             style={{
-              backgroundColor: resolveThemeColorCssValue(props.section.backgroundColor),
+              backgroundColor: headerSurfaceStyle?.backgroundColor,
             }}
           >
             <div className="space-y-6">
@@ -1158,7 +1069,7 @@ const ModernRetailHeaderComponent: PuckComponent<ModernRetailHeaderProps> = (pro
             </div>
           </div>
         ) : null}
-      </header>
+      </Background>
     </VisibilityWrapper>
   );
 };
