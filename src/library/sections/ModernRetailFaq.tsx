@@ -1,4 +1,5 @@
 import type { SectionConfig } from "@yext/visual-editor";
+import { msg } from "@yext/visual-editor";
 
 import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
@@ -152,17 +153,17 @@ const defaultFaqs: FaqItem[] = [
 ];
 
 const faqSource = createItemSource<FaqItem>({
-  label: "FAQs",
+  label: msg("fields.faqs", "FAQs"),
   mappingFields: {
     question: {
-      label: "Question",
+      label: msg("fields.question", "Question"),
       type: "entityField",
       filter: {
         types: ["type.string"],
       },
     },
     answer: {
-      label: "Answer",
+      label: msg("fields.answer", "Answer"),
       type: "entityField",
       filter: {
         types: ["type.rich_text_v2"],
@@ -174,78 +175,78 @@ const faqSource = createItemSource<FaqItem>({
 
 const faqFields: YextFields<ModernRetailFaqProps> = {
   section: {
-    label: "Section",
+    label: msg("fields.section", "Section"),
     type: "object",
     objectFields: {
       visibleOnLivePage: {
-        label: "Visible on Live Page",
+        label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
       backgroundColor: {
-        label: "Background Color",
+        label: msg("fields.backgroundColor", "Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
     },
   },
   heading: {
-    label: "Heading",
+    label: msg("fields.heading", "Heading"),
     type: "object",
     objectFields: {
       text: {
         type: "entityField",
-        label: "Text",
+        label: msg("fields.text", "Text"),
         filter: {
           types: ["type.string"],
         },
       },
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   question: {
-    label: "Question",
+    label: msg("fields.question", "Question"),
     type: "object",
     objectFields: {
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   answer: {
-    label: "Answer",
+    label: msg("fields.answer", "Answer"),
     type: "object",
     objectFields: {
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   activeFaqFontColor: {
-    label: "Active FAQ Font Color",
+    label: msg("fields.activeFaqFontColor", "Active FAQ Font Color"),
     type: "basicSelector",
     options: "SITE_COLOR",
   },
@@ -453,7 +454,7 @@ const ModernRetailFaqComponent: PuckComponent<ModernRetailFaqProps> = (
 };
 
 export const ModernRetailFaq: YextComponentConfig<ModernRetailFaqProps> = {
-  label: "FAQ",
+  label: msg("components.faq", "FAQ"),
   fields: faqFields,
   defaultProps: {
     section: {

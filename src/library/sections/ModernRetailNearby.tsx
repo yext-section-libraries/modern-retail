@@ -1,8 +1,9 @@
 import type { SectionConfig } from "@yext/visual-editor";
-
+import { msg } from "@yext/visual-editor";
 import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider, Link } from "@yext/pages-components";
+import { useTranslation } from "react-i18next";
 import {
   Background,
   EntityField,
@@ -155,108 +156,108 @@ const defaultLimit = 3;
 
 const nearbyFields: YextFields<NearbyProps> = {
   section: {
-    label: "Section",
+    label: msg("fields.section", "Section"),
     type: "object",
     objectFields: {
       visibleOnLivePage: {
-        label: "Visible on Live Page",
+        label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
       backgroundColor: {
-        label: "Background Color",
+        label: msg("fields.backgroundColor", "Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
     },
   },
   heading: {
-    label: "Heading",
+    label: msg("fields.heading", "Heading"),
     type: "object",
     objectFields: {
       text: {
         type: "entityField",
-        label: "Text",
+        label: msg("fields.text", "Text"),
         filter: {
           types: ["type.string"],
         },
       },
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   cardTitle: {
-    label: "Card Title",
+    label: msg("fields.cardTitle", "Card Title"),
     type: "object",
     objectFields: {
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   cardBody: {
-    label: "Card Body",
+    label: msg("fields.cardBody", "Card Body"),
     type: "object",
     objectFields: {
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   button: {
-    label: "Button",
+    label: msg("fields.button", "Button"),
     type: "object",
     objectFields: {
       backgroundColor: {
-        label: "Button Color",
+        label: msg("fields.buttonColor", "Button Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
       textColor: {
-        label: "Label Font Color",
+        label: msg("fields.labelFontColor", "Label Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   map: {
-    label: "Map",
+    label: msg("fields.map", "Map"),
     type: "object",
     objectFields: {
       coordinate: {
         type: "entityField",
-        label: "Coordinates",
+        label: msg("fields.coordinates", "Coordinates"),
         filter: { types: ["type.coordinate"] },
       },
       mapStyle: {
-        label: "Mapbox Map Style",
+        label: msg("fields.mapboxMapStyle", "Mapbox Map Style"),
         type: "select",
         options: mapboxStaticMapStyleOptions,
       },
       zoom: {
-        label: "Zoom",
+        label: msg("fields.zoom", "Zoom"),
         type: "number",
         min: 0,
         max: 22,
@@ -397,6 +398,7 @@ const NearbySectionShell = ({
   helperText?: string;
   streamDocument: StreamDocumentShape;
 }) => {
+  const { t } = useTranslation();
   const sectionForeground = getSurfaceColorStyle(
     props.section.backgroundColor,
     streamDocument,
@@ -664,7 +666,7 @@ const NearbySectionShell = ({
                   width: "fit-content",
                 }}
               >
-                Get Directions
+                {t("getDirections", "Get Directions")}
               </Link>
             </article>
           ))}
@@ -939,7 +941,7 @@ const ModernRetailNearbyComponent: PuckComponent<NearbyProps> = (props) => {
 };
 
 export const ModernRetailNearby: YextComponentConfig<NearbyProps> = {
-  label: "Nearby Locations",
+  label: msg("components.nearbyLocations", "Nearby Locations"),
   fields: nearbyFields,
   defaultProps: {
     section: {

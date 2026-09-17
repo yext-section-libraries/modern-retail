@@ -1,4 +1,5 @@
 import type { SectionConfig } from "@yext/visual-editor";
+import { msg } from "@yext/visual-editor";
 
 import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
@@ -361,24 +362,24 @@ const defaultServicesCards: ServicesCard[] = [
 ];
 
 const servicesCardsSource = createItemSource<ServicesCard>({
-  label: "Cards",
+  label: msg("fields.cards", "Cards"),
   mappingFields: {
     image: {
       type: "entityField",
-      label: "Image",
+      label: msg("fields.image", "Image"),
       filter: {
         types: ["type.image"],
       },
     },
     title: {
-      label: "Title",
+      label: msg("fields.title", "Title"),
       type: "entityField",
       filter: {
         types: ["type.string"],
       },
     },
     description: {
-      label: "Description",
+      label: msg("fields.description", "Description"),
       type: "entityField",
       filter: {
         types: ["type.rich_text_v2"],
@@ -390,121 +391,121 @@ const servicesCardsSource = createItemSource<ServicesCard>({
 
 const servicesFields: YextFields<ModernRetailServicesProps> = {
   section: {
-    label: "Section",
+    label: msg("fields.section", "Section"),
     type: "object",
     objectFields: {
       visibleOnLivePage: {
-        label: "Visible on Live Page",
+        label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
       backgroundColor: {
-        label: "Background Color",
+        label: msg("fields.backgroundColor", "Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
       cardBackgroundColor: {
-        label: "Card Background Color",
+        label: msg("fields.cardBackgroundColor", "Card Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
     },
   },
   data: {
-    label: "Data",
+    label: msg("fields.data", "Data"),
     type: "object",
     objectFields: {
       heading: {
-        label: "Heading",
+        label: msg("fields.heading", "Heading"),
         type: "entityField",
         filter: {
           types: ["type.string"],
         },
       },
       sectionButton: {
-        label: "Section Button",
+        label: msg("fields.sectionButton", "Section Button"),
         type: "comprehensiveCTA",
       },
       cards: servicesCardsSource.field,
     },
   },
   styles: {
-    label: "Styles",
+    label: msg("fields.styles", "Styles"),
     type: "object",
     objectFields: {
       heading: {
-        label: "Heading",
+        label: msg("fields.heading", "Heading"),
         type: "object",
         objectFields: {
           styles: {
-            label: "Text Styles",
+            label: msg("fields.textStyles", "Text Styles"),
             type: "styledText",
           },
           fontColor: {
-            label: "Font Color",
+            label: msg("fields.fontColor", "Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
         },
       },
       cardTitle: {
-        label: "Card Title",
+        label: msg("fields.cardTitle", "Card Title"),
         type: "object",
         objectFields: {
           styles: {
-            label: "Text Styles",
+            label: msg("fields.textStyles", "Text Styles"),
             type: "styledText",
           },
           fontColor: {
-            label: "Font Color",
+            label: msg("fields.fontColor", "Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
         },
       },
       cardDescription: {
-        label: "Card Description",
+        label: msg("fields.cardDescription", "Card Description"),
         type: "object",
         objectFields: {
           styles: {
-            label: "Text Styles",
+            label: msg("fields.textStyles", "Text Styles"),
             type: "styledText",
           },
           fontColor: {
-            label: "Font Color",
+            label: msg("fields.fontColor", "Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
         },
       },
       cardImage: {
-        label: "Card Image",
+        label: msg("fields.cardImage", "Card Image"),
         type: "object",
         objectFields: {
           aspectRatio: {
-            label: "Aspect Ratio",
+            label: msg("fields.aspectRatio", "Aspect Ratio"),
             type: "basicSelector",
             options: aspectRatioOptions,
           },
           imageConstrain: {
-            label: "Image Constrain",
+            label: msg("fields.imageConstrain", "Image Constrain"),
             type: "select",
             options: [
-              { label: "Fixed", value: "fixed" },
-              { label: "Filled", value: "filled" },
+              { label: msg("fields.options.fixed", "Fixed"), value: "fixed" },
+              { label: msg("fields.options.filled", "Filled"), value: "filled" },
             ],
           },
           styles: {
-            label: "Image Styles",
+            label: msg("fields.imageStyles", "Image Styles"),
             type: "styledImage",
           },
         },
       },
       cardButton: {
-        label: "Card Button",
+        label: msg("fields.cardButton", "Card Button"),
         type: "comprehensiveCTA",
       },
     },
@@ -845,7 +846,7 @@ const ModernRetailServicesComponent: PuckComponent<
 
 export const ModernRetailServices: YextComponentConfig<ModernRetailServicesProps> =
   {
-    label: "Services",
+    label: msg("components.services", "Services"),
     fields: servicesFields,
     defaultProps: {
       section: {

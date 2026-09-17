@@ -1,8 +1,10 @@
 import type { SectionConfig } from "@yext/visual-editor";
+import { msg } from "@yext/visual-editor";
 
 import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { parsePhoneNumber } from "awesome-phonenumber";
+import { useTranslation } from "react-i18next";
 import {
   Address,
   AnalyticsScopeProvider,
@@ -10,6 +12,7 @@ import {
   HoursTable,
   Link,
   type AddressType,
+  type DayOfWeekNames,
   type HoursType,
   type StatusParams,
 } from "@yext/pages-components";
@@ -32,6 +35,7 @@ import {
   useDocument,
   VisibilityWrapper,
 } from "@yext/visual-editor";
+import { renderTranslatedHoursStatus } from "../shared/components/TranslatedHoursStatus";
 import { getTextStyles as getSharedTextStyle } from "../shared/sectionHelpers";
 
 type StreamDocumentShape = {
@@ -425,17 +429,17 @@ const defaultOfferings: DetailsOfferingItem[] = [
 ];
 
 const detailsOfferingsSource = createItemSource<DetailsOfferingItem>({
-  label: "Services",
+  label: msg("fields.services", "Services"),
   mappingFields: {
     text: {
       type: "entityField",
-      label: "Text",
+      label: msg("fields.text", "Text"),
       filter: {
         types: ["type.string"],
       },
     },
     status: {
-      label: "Status",
+      label: msg("fields.status", "Status"),
       type: "entityField",
       filter: {
         types: ["type.string"],
@@ -452,111 +456,111 @@ const defaultCardBackgroundColor: ThemeColor = {
 
 const detailsFields: YextFields<ModernRetailDetailsProps> = {
   section: {
-    label: "Section",
+    label: msg("fields.section", "Section"),
     type: "object",
     objectFields: {
       visibleOnLivePage: {
-        label: "Visible on Live Page",
+        label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
       backgroundColor: {
-        label: "Background Color",
+        label: msg("fields.backgroundColor", "Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
       cardBackgroundColor: {
-        label: "Card Background Color",
+        label: msg("fields.cardBackgroundColor", "Card Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
     },
   },
   data: {
-    label: "Data",
+    label: msg("fields.data", "Data"),
     type: "object",
     objectFields: {
       sectionHeading: {
-        label: "Section Heading",
+        label: msg("fields.sectionHeading", "Section Heading"),
         type: "entityField",
         filter: {
           types: ["type.string"],
         },
       },
       info: {
-        label: "Info Card",
+        label: msg("fields.infoCard", "Info Card"),
         type: "object",
         objectFields: {
           heading: {
-            label: "Heading",
+            label: msg("fields.heading", "Heading"),
             type: "entityField",
             filter: {
               types: ["type.string"],
             },
           },
           address: {
-            label: "Address",
+            label: msg("fields.address", "Address"),
             type: "object",
             objectFields: {
               subheading: {
                 type: "entityField",
-                label: "Subheading",
+                label: msg("fields.subheading", "Subheading"),
                 filter: {
                   types: ["type.string"],
                 },
               },
               address: {
                 type: "entityField",
-                label: "Address",
+                label: msg("fields.address", "Address"),
                 filter: {
                   types: ["type.address"],
                 },
               },
               showRegion: {
-                label: "Show Region",
+                label: msg("fields.showRegion", "Show Region"),
                 type: "radio",
                 options: [
-                  { label: "Yes", value: true },
-                  { label: "No", value: false },
+                  { label: msg("fields.options.yes", "Yes"), value: true },
+                  { label: msg("fields.options.no", "No"), value: false },
                 ],
               },
               showCountry: {
-                label: "Show Country",
+                label: msg("fields.showCountry", "Show Country"),
                 type: "radio",
                 options: [
-                  { label: "Yes", value: true },
-                  { label: "No", value: false },
+                  { label: msg("fields.options.yes", "Yes"), value: true },
+                  { label: msg("fields.options.no", "No"), value: false },
                 ],
               },
             },
           },
           phone: {
-            label: "Phone",
+            label: msg("fields.phone", "Phone"),
             type: "object",
             objectFields: {
               subheading: {
                 type: "entityField",
-                label: "Subheading",
+                label: msg("fields.subheading", "Subheading"),
                 filter: {
                   types: ["type.string"],
                 },
               },
               items: {
-                label: "Items",
+                label: msg("fields.items", "Items"),
                 type: "array",
                 arrayFields: {
                   number: {
                     type: "entityField",
-                    label: "Number",
+                    label: msg("fields.number", "Number"),
                     filter: {
                       types: ["type.phone"],
                     },
                   },
                   label: {
-                    label: "Label",
+                    label: msg("fields.label", "Label"),
                     type: "text",
                   },
                 },
@@ -575,46 +579,46 @@ const detailsFields: YextFields<ModernRetailDetailsProps> = {
                   "Phone",
               },
               phoneFormat: {
-                label: "Phone Format",
+                label: msg("fields.phoneFormat", "Phone Format"),
                 type: "radio",
                 options: [
-                  { label: "Domestic", value: "domestic" },
-                  { label: "International", value: "international" },
+                  { label: msg("fields.options.domestic", "Domestic"), value: "domestic" },
+                  { label: msg("fields.options.international", "International"), value: "international" },
                 ],
               },
               includeHyperlink: {
-                label: "Include Hyperlink",
+                label: msg("fields.includeHyperlink", "Include Hyperlink"),
                 type: "radio",
                 options: [
-                  { label: "Yes", value: true },
-                  { label: "No", value: false },
+                  { label: msg("fields.options.yes", "Yes"), value: true },
+                  { label: msg("fields.options.no", "No"), value: false },
                 ],
               },
             },
           },
           primaryCta: {
-            label: "Primary CTA",
+            label: msg("fields.primaryCta", "Primary CTA"),
             type: "comprehensiveCTA",
           },
           secondaryCta: {
-            label: "Secondary CTA",
+            label: msg("fields.secondaryCta", "Secondary CTA"),
             type: "comprehensiveCTA",
           },
         },
       },
       hours: {
-        label: "Hours Card",
+        label: msg("fields.hoursCard", "Hours Card"),
         type: "object",
         objectFields: {
           heading: {
-            label: "Heading",
+            label: msg("fields.heading", "Heading"),
             type: "entityField",
             filter: {
               types: ["type.string"],
             },
           },
           hours: {
-            label: "Hours",
+            label: msg("fields.hours", "Hours"),
             type: "entityField",
             filter: {
               types: ["type.hours"],
@@ -622,78 +626,81 @@ const detailsFields: YextFields<ModernRetailDetailsProps> = {
             disableConstantValueToggle: true,
           },
           hoursStyles: {
-            label: "Hours Options",
+            label: msg("fields.hoursOptions", "Hours Options"),
             type: "object",
             objectFields: {
               startOfWeek: {
-                label: "Start Of Week",
+                label: msg("fields.startOfWeek", "Start Of Week"),
                 type: "select",
                 options: [
-                  { label: "Monday", value: "monday" },
-                  { label: "Tuesday", value: "tuesday" },
-                  { label: "Wednesday", value: "wednesday" },
-                  { label: "Thursday", value: "thursday" },
-                  { label: "Friday", value: "friday" },
-                  { label: "Saturday", value: "saturday" },
-                  { label: "Sunday", value: "sunday" },
-                  { label: "Today", value: "today" },
+                  { label: msg("fields.options.monday", "Monday"), value: "monday" },
+                  { label: msg("fields.options.tuesday", "Tuesday"), value: "tuesday" },
+                  { label: msg("fields.options.wednesday", "Wednesday"), value: "wednesday" },
+                  { label: msg("fields.options.thursday", "Thursday"), value: "thursday" },
+                  { label: msg("fields.options.friday", "Friday"), value: "friday" },
+                  { label: msg("fields.options.saturday", "Saturday"), value: "saturday" },
+                  { label: msg("fields.options.sunday", "Sunday"), value: "sunday" },
+                  { label: msg("fields.options.today", "Today"), value: "today" },
                 ],
               },
               collapseDays: {
-                label: "Collapse Days",
+                label: msg("fields.collapseDays", "Collapse Days"),
                 type: "radio",
                 options: [
-                  { label: "Yes", value: true },
-                  { label: "No", value: false },
+                  { label: msg("fields.options.yes", "Yes"), value: true },
+                  { label: msg("fields.options.no", "No"), value: false },
                 ],
               },
               showAdditionalHoursText: {
-                label: "Show Additional Hours Text",
+                label: msg("fields.showAdditionalHoursText", "Show Additional Hours Text"),
                 type: "radio",
                 options: [
-                  { label: "Yes", value: true },
-                  { label: "No", value: false },
+                  { label: msg("fields.options.yes", "Yes"), value: true },
+                  { label: msg("fields.options.no", "No"), value: false },
                 ],
               },
               alignment: {
-                label: "Alignment",
+                label: msg("fields.alignment", "Alignment"),
                 type: "select",
                 options: [
-                  { label: "Start", value: "items-start" },
-                  { label: "Center", value: "items-center" },
-                  { label: "End", value: "items-end" },
+                  { label: msg("fields.options.start", "Start"), value: "items-start" },
+                  { label: msg("fields.options.center", "Center"), value: "items-center" },
+                  { label: msg("fields.options.end", "End"), value: "items-end" },
                 ],
               },
               showCurrentStatus: {
-                label: "Show Current Status",
+                label: msg("fields.showCurrentStatus", "Show Current Status"),
                 type: "radio",
                 options: [
-                  { label: "Yes", value: true },
-                  { label: "No", value: false },
+                  { label: msg("fields.options.yes", "Yes"), value: true },
+                  { label: msg("fields.options.no", "No"), value: false },
                 ],
               },
               timeFormat: {
-                label: "Time Format",
+                label: msg("fields.timeFormat", "Time Format"),
                 type: "select",
                 options: [
-                  { label: "12 Hour", value: "12h" },
-                  { label: "24 Hour", value: "24h" },
+                  { label: msg("fields.options.hour12Label", "12 Hour"), value: "12h" },
+                  { label: msg("fields.options.hour24Label", "24 Hour"), value: "24h" },
                 ],
               },
               dayOfWeekFormat: {
-                label: "Day Of Week Format",
+                label: msg(
+                  "fields.dayOfWeekFormatLabel",
+                  "Day Of Week Format",
+                ),
                 type: "select",
                 options: [
-                  { label: "Short", value: "short" },
-                  { label: "Long", value: "long" },
+                  { label: msg("fields.options.short", "Short"), value: "short" },
+                  { label: msg("fields.options.long", "Long"), value: "long" },
                 ],
               },
               showDayNames: {
-                label: "Show Day Names",
+                label: msg("fields.showDayNames", "Show Day Names"),
                 type: "radio",
                 options: [
-                  { label: "Yes", value: true },
-                  { label: "No", value: false },
+                  { label: msg("fields.options.yes", "Yes"), value: true },
+                  { label: msg("fields.options.no", "No"), value: false },
                 ],
               },
             },
@@ -701,11 +708,11 @@ const detailsFields: YextFields<ModernRetailDetailsProps> = {
         },
       },
       services: {
-        label: "Services Card",
+        label: msg("fields.servicesCard", "Services Card"),
         type: "object",
         objectFields: {
           heading: {
-            label: "Heading",
+            label: msg("fields.heading", "Heading"),
             type: "entityField",
             filter: {
               types: ["type.string"],
@@ -717,77 +724,77 @@ const detailsFields: YextFields<ModernRetailDetailsProps> = {
     },
   },
   styles: {
-    label: "Styles",
+    label: msg("fields.styles", "Styles"),
     type: "object",
     objectFields: {
       sectionHeading: {
-        label: "Section Heading",
+        label: msg("fields.sectionHeading", "Section Heading"),
         type: "object",
         objectFields: {
           styles: {
-            label: "Text Styles",
+            label: msg("fields.textStyles", "Text Styles"),
             type: "styledText",
           },
           fontColor: {
-            label: "Font Color",
+            label: msg("fields.fontColor", "Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
         },
       },
       heading: {
-        label: "Heading",
+        label: msg("fields.heading", "Heading"),
         type: "object",
         objectFields: {
           styles: {
-            label: "Text Styles",
+            label: msg("fields.textStyles", "Text Styles"),
             type: "styledText",
           },
           fontColor: {
-            label: "Font Color",
+            label: msg("fields.fontColor", "Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
         },
       },
       address: {
-        label: "Address",
+        label: msg("fields.address", "Address"),
         type: "object",
         objectFields: {
           subheadingFontColor: {
-            label: "Subheading Font Color",
+            label: msg("fields.subheadingFontColor", "Subheading Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
           contentFontColor: {
-            label: "Content Font Color",
+            label: msg("fields.contentFontColor", "Content Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
         },
       },
       phone: {
-        label: "Phone",
+        label: msg("fields.phone", "Phone"),
         type: "object",
         objectFields: {
           subheadingFontColor: {
-            label: "Subheading Font Color",
+            label: msg("fields.subheadingFontColor", "Subheading Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
           contentFontColor: {
-            label: "Content Font Color",
+            label: msg("fields.contentFontColor", "Content Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
         },
       },
       services: {
-        label: "Services",
+        label: msg("fields.services", "Services"),
         type: "object",
         objectFields: {
           fontColor: {
-            label: "Font and Icon Color",
+            label: msg("fields.fontAndIconColor", "Font and Icon Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
@@ -800,6 +807,25 @@ const detailsFields: YextFields<ModernRetailDetailsProps> = {
 const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
   props,
 ) => {
+  const { t, i18n } = useTranslation();
+  const dayOfWeekNames = React.useMemo<DayOfWeekNames>(() => {
+    const formatter = new Intl.DateTimeFormat(i18n.language, {
+      timeZone: "UTC",
+      weekday: "long",
+    });
+    const formatWeekday = (day: number) =>
+      formatter.format(new Date(Date.UTC(2024, 0, day)));
+
+    return {
+      sunday: formatWeekday(7),
+      monday: formatWeekday(8),
+      tuesday: formatWeekday(9),
+      wednesday: formatWeekday(10),
+      thursday: formatWeekday(11),
+      friday: formatWeekday(12),
+      saturday: formatWeekday(13),
+    };
+  }, [i18n.language]);
   const streamDocument =
     (useDocument() as StreamDocumentShape | undefined) ?? {};
   const locale = streamDocument.locale ?? "en";
@@ -1287,7 +1313,8 @@ const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
                         gap: "12px",
                       }}
                     >
-                      {props.data.hours.hoursStyles.showCurrentStatus ? (
+                      {props.data.hours.hoursStyles.showCurrentStatus ||
+                      streamDocument.comingSoon ? (
                         <HoursStatus
                           hours={resolvedHours}
                           comingSoon={streamDocument.comingSoon}
@@ -1300,91 +1327,33 @@ const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
                             hour12:
                               props.data.hours.hoursStyles.timeFormat === "12h",
                           }}
-                          statusTemplate={(params: StatusParams) => {
-                            const isOpen24h =
-                              params.currentInterval?.is24h?.() || false;
-                            const isIndefinitelyClosed = !params.futureInterval;
-
-                            const currentContent = streamDocument.comingSoon ? (
-                              <span className="HoursStatus-current">
-                                Coming Soon
-                              </span>
-                            ) : isOpen24h ? (
-                              <span className="HoursStatus-current">
-                                Open 24 Hours
-                              </span>
-                            ) : isIndefinitelyClosed ? (
-                              <span className="HoursStatus-current">
-                                Temporarily Closed
-                              </span>
-                            ) : (
-                              <span className="HoursStatus-current">
-                                {params.isOpen ? "Open Now" : "Closed"}
-                              </span>
-                            );
-
-                            if (
-                              streamDocument.comingSoon ||
-                              isOpen24h ||
-                              isIndefinitelyClosed
-                            ) {
-                              return <div>{currentContent}</div>;
-                            }
-
-                            const interval = params.isOpen
-                              ? params.currentInterval
-                              : params.futureInterval;
-                            const time = params.isOpen
-                              ? (interval?.getEndTime(
-                                  locale,
-                                  params.timeOptions,
-                                ) ?? "")
-                              : (interval?.getStartTime(
-                                  locale,
-                                  params.timeOptions,
-                                ) ?? "");
-                            const showDayOfWeek =
-                              props.data.hours.hoursStyles.showDayNames &&
-                              Boolean(interval);
-                            const dayOfWeek = showDayOfWeek
-                              ? params.isOpen
-                                ? (interval?.end
-                                    ?.setLocale(locale)
-                                    .toLocaleString(params.dayOptions) ?? "")
-                                : (interval?.start
-                                    ?.setLocale(locale)
-                                    .toLocaleString(params.dayOptions) ?? "")
-                              : "";
-                            const futureText = params.isOpen
-                              ? dayOfWeek
-                                ? `Closes at ${time} ${dayOfWeek}`
-                                : `Closes at ${time}`
-                              : dayOfWeek
-                                ? `Opens at ${time} ${dayOfWeek}`
-                                : `Opens at ${time}`;
-
-                            return (
-                              <div>
-                                {currentContent}
-                                <span className="HoursStatus-separator">
-                                  {" "}
-                                  •{" "}
-                                </span>
-                                <span className="HoursStatus-future">
-                                  {futureText}
-                                </span>
-                              </div>
-                            );
-                          }}
+                          statusTemplate={(params: StatusParams) =>
+                            renderTranslatedHoursStatus({
+                              params,
+                              t,
+                              locale,
+                              showCurrentStatus:
+                                props.data.hours.hoursStyles.showCurrentStatus,
+                              showDayNames:
+                                props.data.hours.hoursStyles.showDayNames,
+                            })
+                          }
                         />
                       ) : null}
                       <HoursTable
                         className="ps-hours-table"
                         hours={resolvedHours}
                         comingSoon={streamDocument.comingSoon}
+                        dayOfWeekNames={dayOfWeekNames}
                         startOfWeek={props.data.hours.hoursStyles.startOfWeek}
                         collapseDays={props.data.hours.hoursStyles.collapseDays}
                         timeOptions={timeOptions}
+                        intervalTranslations={{
+                          isClosed: t("closed", "Closed"),
+                          open24Hours: t("open24Hours", "Open 24 Hours"),
+                          reopenDate: t("reopenDate", "Reopen Date"),
+                          timeFormatLocale: i18n.language,
+                        }}
                       />
                       {props.data.hours.hoursStyles.showAdditionalHoursText &&
                       additionalHoursText ? (
@@ -1493,7 +1462,7 @@ const ModernRetailDetailsComponent: PuckComponent<ModernRetailDetailsProps> = (
 
 export const ModernRetailDetails: YextComponentConfig<ModernRetailDetailsProps> =
   {
-    label: "Details",
+    label: msg("components.details", "Details"),
     fields: detailsFields,
     defaultProps: {
       section: {
