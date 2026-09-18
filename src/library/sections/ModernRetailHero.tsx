@@ -1,11 +1,14 @@
 import type { SectionConfig } from "@yext/visual-editor";
+import { msg, pt } from "@yext/visual-editor";
 
 import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
+import { Trans, useTranslation } from "react-i18next";
 import {
   AnalyticsScopeProvider,
   HoursStatus,
   type HoursType,
+  type StatusParams,
 } from "@yext/pages-components";
 import {
   Background,
@@ -36,6 +39,7 @@ import {
   resolveImageFieldValue,
   resolveTextFieldValue,
 } from "../shared/sectionHelpers";
+import { renderTranslatedHoursStatus } from "../shared/components/TranslatedHoursStatus";
 
 type StreamDocumentShape = {
   businessId?: string | number;
@@ -44,6 +48,8 @@ type StreamDocumentShape = {
   geomodifier?: string;
   hours?: HoursType;
   locale?: string;
+  comingSoon?: boolean;
+  timezone?: string;
   _yext?: {
     platformDomain?: string;
   };
@@ -238,10 +244,19 @@ const getEntityReviewCountField = (streamDocument: any) => {
   return null;
 };
 
-const formatReviewCountLabel = (value: string) => {
+const formatReviewCountLabel = (
+  value: string,
+  t: ReturnType<typeof useTranslation>["t"],
+) => {
   const numericValue = Number.parseInt(value, 10);
   if (!Number.isFinite(numericValue)) return value.trim();
-  return `${numericValue} ${numericValue === 1 ? "Review" : "Reviews"}`;
+  return t("review", {
+    count: numericValue,
+    defaultValue:
+      numericValue === 1 ? "{{count}} Review" : "{{count}} Reviews",
+    defaultValue_one: "{{count}} Review",
+    defaultValue_other: "{{count}} Reviews",
+  });
 };
 
 const EntityMetricFieldFromDocument = ({
@@ -258,6 +273,7 @@ const EntityMetricFieldFromDocument = ({
 );
 
 const ReviewSummaryDescription = () => {
+  const { t } = useTranslation();
   const streamDocument = useDocument<any>();
   const hasRating = Boolean(getEntityRatingField(streamDocument));
   const hasReviewCount = Boolean(getEntityReviewCountField(streamDocument));
@@ -274,15 +290,18 @@ const ReviewSummaryDescription = () => {
       }}
     >
       <div>
-        Ratings and review count are automatically populated using first-party
-        review data for this account.
+        {t(
+          "ratingsAutomaticallyPopulated",
+          "Ratings and review count are automatically populated using first-party review data for this account.",
+        )}
       </div>
       {!hasCompleteReviewData ? (
         <div>
-          <strong>Please Note:</strong> First-party review rating and count data
-          aren&apos;t currently available for this account. Sample content is
-          being shown for preview purposes only and will not appear on the
-          published page.
+          <strong>{t("pleaseNote", "Please Note:")}</strong>{" "}
+          {t(
+            "firstPartyReviewDataUnavailable",
+            "First-party review rating and count data aren't currently available for this account. Sample content is being shown for preview purposes only and will not appear on the published page.",
+          )}
         </div>
       ) : null}
     </div>
@@ -290,6 +309,7 @@ const ReviewSummaryDescription = () => {
 };
 
 const ReviewGenerationNotice = () => {
+  const { t } = useTranslation();
   const [isDismissed, setIsDismissed] = React.useState(false);
 
   React.useEffect(() => {
@@ -320,7 +340,10 @@ const ReviewGenerationNotice = () => {
     >
       <button
         type="button"
-        aria-label="Dismiss review generation notice"
+        aria-label={t(
+          "dismissReviewGenerationNotice",
+          "Dismiss review generation notice",
+        )}
         onClick={() => {
           if (typeof window !== "undefined") {
             window.sessionStorage.setItem(
@@ -357,10 +380,12 @@ const ReviewGenerationNotice = () => {
           textUnderlineOffset: "2px",
         }}
       >
-        Review Generation
+        {t("reviewGeneration", "Review Generation")}
       </a>{" "}
-      can help collect more first-party reviews and improve average rating and
-      review count over time. Contact your account manager to learn more.
+      {t(
+        "reviewGenerationDescription",
+        "can help collect more first-party reviews and improve average rating and review count over time. Contact your account manager to learn more.",
+      )}
     </div>
   );
 };
@@ -397,16 +422,23 @@ const hasHoursValue = (value: unknown): value is HoursType =>
   );
 
 const KnowledgeGraphHoursNotice = () => {
+  const { t } = useTranslation();
   const streamDocument =
     (useDocument() as StreamDocumentShape | undefined) ?? {};
   const href = getKnowledgeGraphEntityHref(streamDocument);
 
   return !hasHoursValue(streamDocument.hours) ? (
     <div style={editorNoteStyle}>
-      <strong>Please Note:</strong> Hours are linked to Knowledge Graph data,
-      which is currently unavailable for this entity. Update the entity&apos;s{" "}
-      <strong>Hours</strong> field in{" "}
-      <EditorNoteLink href={href}>Knowledge Graph</EditorNoteLink>.
+      <Trans
+        t={t}
+        i18nKey="hoursKnowledgeGraphNotice"
+        defaults="<notice>Please Note:</notice> Hours are linked to Knowledge Graph data, which is currently unavailable for this entity. Update the entity's <hours>Hours</hours> field in <knowledgeGraph>Knowledge Graph</knowledgeGraph>."
+        components={{
+          notice: <strong />,
+          hours: <strong />,
+          knowledgeGraph: <EditorNoteLink href={href} />,
+        }}
+      />
     </div>
   ) : null;
 };
@@ -569,67 +601,67 @@ const defaultSecondaryCta: ComprehensiveCTAValue = {
 
 const heroFields: YextFields<ModernRetailHeroProps> = {
   section: {
-    label: "Section",
+    label: msg("fields.section", "Section"),
     type: "object",
     objectFields: {
       visibleOnLivePage: {
-        label: "Visible on Live Page",
+        label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
       backgroundColor: {
-        label: "Card Background Color",
+        label: msg("fields.cardBackgroundColor", "Card Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
     },
   },
   background: {
-    label: "Background",
+    label: msg("fields.background", "Background"),
     type: "object",
     objectFields: {
       type: {
-        label: "Type",
+        label: msg("fields.type", "Type"),
         type: "radio",
         options: [
-          { label: "Image", value: "image" },
-          { label: "Solid Color", value: "color" },
+          { label: msg("fields.options.image", "Image"), value: "image" },
+          { label: msg("fields.options.solidColor", "Solid Color"), value: "color" },
         ],
       },
       solidColor: {
-        label: "Fill",
+        label: msg("fields.fill", "Fill"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
       image: {
-        label: "Background Image",
+        label: msg("fields.backgroundImage", "Background Image"),
         type: "object",
         objectFields: {
           image: {
             type: "entityField",
-            label: "Image",
+            label: msg("fields.image", "Image"),
             filter: {
               types: ["type.image"],
             },
           },
           aspectRatio: {
-            label: "Aspect Ratio",
+            label: msg("fields.aspectRatio", "Aspect Ratio"),
             type: "basicSelector",
             options: aspectRatioOptions,
           },
           imageConstrain: {
-            label: "Image Constrain",
+            label: msg("fields.imageConstrain", "Image Constrain"),
             type: "select",
             options: [
-              { label: "Fixed", value: "fixed" },
-              { label: "Filled", value: "filled" },
+              { label: msg("fields.options.fixed", "Fixed"), value: "fixed" },
+              { label: msg("fields.options.filled", "Filled"), value: "filled" },
             ],
           },
           styles: {
-            label: "Image Styles",
+            label: msg("fields.imageStyles", "Image Styles"),
             type: "styledImage",
           },
         },
@@ -637,51 +669,51 @@ const heroFields: YextFields<ModernRetailHeroProps> = {
     },
   },
   header: {
-    label: "Header",
+    label: msg("fields.header", "Header"),
     type: "object",
     objectFields: {
       text: {
         type: "entityField",
-        label: "Text",
+        label: msg("fields.text", "Text"),
         filter: {
           types: ["type.string"],
         },
       },
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   additionalHeader: {
-    label: "Additional Header",
+    label: msg("fields.additionalHeader", "Additional Header"),
     type: "object",
     objectFields: {
       text: {
         type: "entityField",
-        label: "Text",
+        label: msg("fields.text", "Text"),
         filter: {
           types: ["type.string"],
         },
       },
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   reviewsRatingAndCount: {
-    label: "First-Party Reviews Rating and Count",
+    label: msg("fields.firstPartyReviewsRatingAndCount", "First-Party Reviews Rating and Count"),
     type: "object",
     objectFields: {
       description: {
@@ -692,31 +724,31 @@ const heroFields: YextFields<ModernRetailHeroProps> = {
         type: "custom",
         render: () => (
           <EntityMetricFieldFromDocument
-            label="Rating"
+            label={pt(msg("fields.rating", "Rating"))}
             path={REVIEW_RATING_FIELD_PATH}
           />
         ),
       },
       showStarsLabel: {
-        label: "Show Star Label",
+        label: msg("fields.showStarLabel", "Show Star Label"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
       fontColor: {
-        label: "Rating and Count Font Color",
+        label: msg("fields.ratingAndCountFontColor", "Rating and Count Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
       starColor: {
-        label: "Star Rating Fill",
+        label: msg("fields.starRatingFill", "Star Rating Fill"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
       dividerColor: {
-        label: "Divider Color",
+        label: msg("fields.dividerColor", "Divider Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
@@ -724,7 +756,7 @@ const heroFields: YextFields<ModernRetailHeroProps> = {
         type: "custom",
         render: () => (
           <EntityMetricFieldFromDocument
-            label="Review Count"
+            label={pt(msg("fields.reviewCount", "Review Count"))}
             path={REVIEW_COUNT_FIELD_PATH}
           />
         ),
@@ -736,22 +768,22 @@ const heroFields: YextFields<ModernRetailHeroProps> = {
     },
   },
   description: {
-    label: "Description",
+    label: msg("fields.description", "Description"),
     type: "object",
     objectFields: {
       text: {
         type: "entityField",
-        label: "Text",
+        label: msg("fields.text", "Text"),
         filter: {
           types: ["type.rich_text_v2"],
         },
       },
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
@@ -759,14 +791,14 @@ const heroFields: YextFields<ModernRetailHeroProps> = {
   },
   hours: {
     type: "entityField",
-    label: "Hours",
+    label: msg("fields.hours", "Hours"),
     filter: {
       types: ["type.hours"],
     },
     disableConstantValueToggle: true,
   },
   hoursStyles: {
-    label: "Hours Styles",
+    label: msg("fields.hoursStyles", "Hours Styles"),
     type: "object",
     objectFields: {
       notice: {
@@ -774,29 +806,29 @@ const heroFields: YextFields<ModernRetailHeroProps> = {
         render: () => <KnowledgeGraphHoursNotice />,
       },
       showCurrentStatus: {
-        label: "Show Current Status",
+        label: msg("fields.showCurrentStatus", "Show Current Status"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
       timeFormat: {
-        label: "Time Format",
+        label: msg("fields.timeFormat", "Time Format"),
         type: "select",
         options: [
-          { label: "12 Hour", value: "12h" },
-          { label: "24 Hour", value: "24h" },
+          { label: msg("fields.options.hour12Label", "12 Hour"), value: "12h" },
+          { label: msg("fields.options.hour24Label", "24 Hour"), value: "24h" },
         ],
       },
     },
   },
   ctas: {
-    label: "Buttons",
+    label: msg("fields.buttons", "Buttons"),
     type: "array",
     arrayFields: {
       item: {
-        label: "Button",
+        label: msg("fields.button", "Button"),
         type: "comprehensiveCTA",
       },
     },
@@ -822,6 +854,7 @@ const heroFields: YextFields<ModernRetailHeroProps> = {
 const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
   props,
 ) => {
+  const { t } = useTranslation();
   const streamDocument =
     (useDocument() as StreamDocumentShape | undefined) ?? {};
   const locale = streamDocument.locale ?? "en";
@@ -887,7 +920,7 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
     resolveThemeColorCssValue(props.reviewsRatingAndCount.dividerColor) ??
     "currentColor";
   const reviewCountLabel = hasReviewCount
-    ? formatReviewCountLabel(reviewCountValue)
+    ? formatReviewCountLabel(reviewCountValue, t)
     : "";
   const resolvedDescription = resolveComponentData(
     props.description.text,
@@ -903,7 +936,9 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
     streamDocument,
   ) as HoursType | undefined;
   const timezone =
-    Intl.DateTimeFormat().resolvedOptions().timeZone || "America/New_York";
+    streamDocument.timezone ??
+    Intl.DateTimeFormat().resolvedOptions().timeZone ??
+    "America/New_York";
   const timeOptions: Intl.DateTimeFormatOptions =
     props.hoursStyles.timeFormat === "24h"
       ? { hour: "2-digit", minute: "2-digit", hour12: false }
@@ -1107,7 +1142,9 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
                     padding: "28px 28px 24px",
                   }}
                 >
-                  {hasHoursValue(resolvedHours) && props.hoursStyles.showCurrentStatus ? (
+                  {hasHoursValue(resolvedHours) &&
+                  (props.hoursStyles.showCurrentStatus ||
+                    streamDocument.comingSoon) ? (
                     <EntityField
                       displayName="Hours"
                       fieldId={props.hours.field}
@@ -1139,27 +1176,19 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
                         <span>
                           <HoursStatus
                             hours={resolvedHours}
+                            comingSoon={streamDocument.comingSoon}
                             timezone={timezone}
                             timeOptions={timeOptions}
-                            statusTemplate={({
-                              isOpen,
-                              currentInterval,
-                              futureInterval,
-                            }) => {
-                              if (isOpen && currentInterval) {
-                                return `Open Now: Closes at ${currentInterval.getEndTime(
-                                  locale,
-                                  timeOptions,
-                                )}`;
-                              }
-                              if (!isOpen && futureInterval) {
-                                return `Opens Today: ${futureInterval.getStartTime(
-                                  locale,
-                                  timeOptions,
-                                )}`;
-                              }
-                              return "Closed Today";
-                            }}
+                            statusTemplate={(params: StatusParams) =>
+                              renderTranslatedHoursStatus({
+                                params,
+                                t,
+                                locale,
+                                showCurrentStatus:
+                                  props.hoursStyles.showCurrentStatus,
+                                showDayNames: false,
+                              })
+                            }
                           />
                         </span>
                       </div>
@@ -1249,7 +1278,9 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
                     }}
                   >
                     {hasRating ? <span>{rating}</span> : null}
-                    {hasRating && showStarLabel ? <span>Stars</span> : null}
+                    {hasRating && showStarLabel ? (
+                      <span>{t("stars", "Stars")}</span>
+                    ) : null}
                     {hasRating ? (
                       <span
                         aria-hidden="true"
@@ -1344,7 +1375,7 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
 
 export const ModernRetailHero: YextComponentConfig<ModernRetailHeroProps> =
   {
-    label: "Hero",
+    label: msg("components.hero", "Hero"),
     fields: heroFields,
     resolveFields: (data) => ({
       ...heroFields,

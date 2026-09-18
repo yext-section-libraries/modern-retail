@@ -1,8 +1,10 @@
 import type { SectionConfig } from "@yext/visual-editor";
+import { msg, pt } from "@yext/visual-editor";
 
 import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider, Link } from "@yext/pages-components";
+import { useTranslation } from "react-i18next";
 import {
   Background,
   EntityField,
@@ -100,6 +102,7 @@ const SegmentedSourceField = ({
   value?: "entity" | "custom";
   onChange: (value: "entity" | "custom") => void;
 }) => {
+  const { t } = useTranslation();
   const currentValue = value ?? "custom";
   const buttonStyle = (isActive: boolean): React.CSSProperties => ({
     flex: "1 1 0",
@@ -135,19 +138,19 @@ const SegmentedSourceField = ({
           type="button"
           onClick={() => onChange("entity")}
           aria-pressed={currentValue === "entity"}
-          aria-label={`${label}: Knowledge Graph`}
+          aria-label={`${label}: ${t("knowledgeGraph", "Knowledge Graph")}`}
           style={buttonStyle(currentValue === "entity")}
         >
-          Knowledge Graph
+          {t("knowledgeGraph", "Knowledge Graph")}
         </button>
         <button
           type="button"
           onClick={() => onChange("custom")}
           aria-pressed={currentValue === "custom"}
-          aria-label={`${label}: Custom`}
+          aria-label={`${label}: ${t("custom", "Custom")}`}
           style={buttonStyle(currentValue === "custom")}
         >
-          Custom
+          {t("custom", "Custom")}
         </button>
       </div>
     </div>
@@ -223,95 +226,95 @@ const createFooterLink = (label: string, link: string): FooterLinkValue => ({
 
 const footerFields: YextFields<ModernRetailFooterProps> = {
   section: {
-    label: "Section",
+    label: msg("fields.section", "Section"),
     type: "object",
     objectFields: {
       visibleOnLivePage: {
-        label: "Visible on Live Page",
+        label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
       backgroundColor: {
-        label: "Background Color",
+        label: msg("fields.backgroundColor", "Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
     },
   },
   brand: {
-    label: "Brand",
+    label: msg("fields.brand", "Brand"),
     type: "object",
     objectFields: {
       displayType: {
-        label: "Display Type",
+        label: msg("fields.displayType", "Display Type"),
         type: "radio",
         options: [
-          { label: "Text", value: "text" },
-          { label: "Logo", value: "logo" },
+          { label: msg("fields.options.text", "Text"), value: "text" },
+          { label: msg("fields.options.logo", "Logo"), value: "logo" },
         ],
       },
       name: {
-        label: "Brand Name",
+        label: msg("fields.brandName", "Brand Name"),
         type: "object",
         objectFields: {
           text: {
             type: "entityField",
-            label: "Text",
+            label: msg("fields.text", "Text"),
             filter: {
               types: ["type.string"],
             },
           },
           styles: {
-            label: "Text Styles",
+            label: msg("fields.textStyles", "Text Styles"),
             type: "styledText",
           },
           fontColor: {
-            label: "Font Color",
+            label: msg("fields.fontColor", "Font Color"),
             type: "basicSelector",
             options: "SITE_COLOR",
           },
         },
       },
       logoSource: {
-        label: "Logo Source",
+        label: msg("fields.logoSource", "Logo Source"),
         type: "custom",
         render: ({ value, onChange }) => (
           <SegmentedSourceField
-            label="Logo Source"
+            label={pt(msg("fields.logoSource", "Logo Source"))}
             value={value as "entity" | "custom" | undefined}
             onChange={onChange as (value: "entity" | "custom") => void}
           />
         ),
       },
       logo: {
-        label: "Brand Logo",
+        label: msg("fields.brandLogo", "Brand Logo"),
         type: "object",
         objectFields: {
           image: {
             type: "entityField",
-            label: "Image",
+            label: msg("fields.image", "Image"),
             filter: {
               types: ["type.image"],
             },
           },
           aspectRatio: {
-            label: "Aspect Ratio",
+            label: msg("fields.aspectRatio", "Aspect Ratio"),
             type: "basicSelector",
             options: aspectRatioOptions,
           },
           imageConstrain: {
-            label: "Image Constrain",
+            label: msg("fields.imageConstrain", "Image Constrain"),
             type: "select",
             options: [
-              { label: "Fixed", value: "fixed" },
-              { label: "Filled", value: "filled" },
+              { label: msg("fields.options.fixed", "Fixed"), value: "fixed" },
+              { label: msg("fields.options.filled", "Filled"), value: "filled" },
             ],
           },
           styles: {
-            label: "Image Styles",
+            label: msg("fields.imageStyles", "Image Styles"),
             type: "styledImage",
           },
         },
@@ -319,33 +322,33 @@ const footerFields: YextFields<ModernRetailFooterProps> = {
     },
   },
   footerLinksStyles: {
-    label: "Link Styling",
+    label: msg("fields.linkStyling", "Link Styling"),
     type: "styledText",
   },
   footerLinks: {
-    label: "Footer Links",
+    label: msg("fields.footerLinks", "Footer Links"),
     type: "array",
     arrayFields: {
       label: {
-        label: "Label",
+        label: msg("fields.label", "Label"),
         type: "entityField",
         filter: {
           types: ["type.string"],
         },
       },
       link: {
-        label: "Link",
+        label: msg("fields.link", "Link"),
         type: "entityField",
         filter: {
           types: ["type.string"],
         },
       },
       openInNewTab: {
-        label: "Open in New Tab",
+        label: msg("fields.openInNewTab", "Open in New Tab"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
     },
@@ -713,7 +716,7 @@ const ModernRetailFooterComponent: PuckComponent<ModernRetailFooterProps> = (
 
 export const ModernRetailFooter: YextComponentConfig<ModernRetailFooterProps> =
   {
-    label: "Footer",
+    label: msg("components.footer", "Footer"),
     fields: footerFields,
     resolveFields: (data) => ({
       ...footerFields,

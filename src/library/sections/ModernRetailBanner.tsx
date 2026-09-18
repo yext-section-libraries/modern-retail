@@ -1,4 +1,5 @@
 import type { SectionConfig } from "@yext/visual-editor";
+import { msg, pt } from "@yext/visual-editor";
 
 import { PuckComponent } from "@puckeditor/core";
 import { CircleSlash2 } from "lucide-react";
@@ -43,57 +44,57 @@ type ModernRetailBannerProps = {
 
 const ModernRetailBannerFields: YextFields<ModernRetailBannerProps> = {
   data: {
-    label: "Banner Text",
+    label: msg("fields.bannerText", "Banner Text"),
     type: "object",
     objectFields: {
       text: {
-        label: "Text",
+        label: msg("fields.text", "Text"),
         type: "entityField",
         filter: {
           types: ["type.rich_text_v2"],
         },
       },
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Text Color",
+        label: msg("fields.textColor", "Text Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   styles: {
-    label: "Styles",
+    label: msg("fields.styles", "Styles"),
     type: "object",
     objectFields: {
       textAlignment: {
-        label: "Text Alignment",
+        label: msg("fields.textAlignment", "Text Alignment"),
         type: "radio",
         options: [
-          { label: "Left", value: "left" },
-          { label: "Center", value: "center" },
-          { label: "Right", value: "right" },
+          { label: msg("fields.options.left", "Left"), value: "left" },
+          { label: msg("fields.options.center", "Center"), value: "center" },
+          { label: msg("fields.options.right", "Right"), value: "right" },
         ],
       },
     },
   },
   section: {
-    label: "Section",
+    label: msg("fields.section", "Section"),
     type: "object",
     objectFields: {
       backgroundColor: {
-        label: "Background Color",
+        label: msg("fields.backgroundColor", "Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
       visibleOnLivePage: {
-        label: "Visible on Live Page",
+        label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
     },
@@ -136,10 +137,10 @@ const ModernRetailBannerComponent: PuckComponent<ModernRetailBannerProps> = ({
           <CircleSlash2 className="h-10 w-10 flex-shrink-0 text-gray-400" />
           <div className="flex flex-col items-start">
             <Body className="font-medium text-gray-500" variant="sm">
-              Section hidden for this page
+              {pt("sectionHiddenForThisPage", "Section hidden for this page")}
             </Body>
             <Body className="font-normal text-gray-500" variant="sm">
-              The mapped banner field is empty
+              {pt("mappedBannerFieldEmpty", "The mapped banner field is empty")}
             </Body>
           </div>
         </div>
@@ -188,43 +189,44 @@ const ModernRetailBannerComponent: PuckComponent<ModernRetailBannerProps> = ({
 /**
  * Displays a full-width, editor-configurable rich-text banner.
  */
-export const ModernRetailBanner: YextComponentConfig<ModernRetailBannerProps> = {
-  label: "Banner",
-  fields: ModernRetailBannerFields,
-  defaultProps: {
-    data: {
-      text: {
-        field: "",
-        constantValue: {
-          defaultValue: getDefaultRTF("Banner Text"),
+export const ModernRetailBanner: YextComponentConfig<ModernRetailBannerProps> =
+  {
+    label: msg("components.banner", "Banner"),
+    fields: ModernRetailBannerFields,
+    defaultProps: {
+      data: {
+        text: {
+          field: "",
+          constantValue: {
+            defaultValue: getDefaultRTF("Banner Text"),
+          },
+          constantValueEnabled: true,
         },
-        constantValueEnabled: true,
+        styles: {
+          fontFamily: "default",
+          fontSize: "default",
+          fontWeight: "default",
+          fontStyle: "default",
+          textTransform: "default",
+        },
       },
       styles: {
-        fontFamily: "default",
-        fontSize: "default",
-        fontWeight: "default",
-        fontStyle: "default",
-        textTransform: "default",
+        textAlignment: "center",
+      },
+      section: {
+        backgroundColor: backgroundColors.color1.value,
+        visibleOnLivePage: true,
       },
     },
-    styles: {
-      textAlignment: "center",
-    },
-    section: {
-      backgroundColor: backgroundColors.color1.value,
-      visibleOnLivePage: true,
-    },
-  },
-  render: (props) => (
-    <VisibilityWrapper
-      isEditing={props.puck.isEditing}
-      liveVisibility={props.section.visibleOnLivePage}
-    >
-      <ModernRetailBannerComponent {...props} />
-    </VisibilityWrapper>
-  ),
-};
+    render: (props) => (
+      <VisibilityWrapper
+        isEditing={props.puck.isEditing}
+        liveVisibility={props.section.visibleOnLivePage}
+      >
+        <ModernRetailBannerComponent {...props} />
+      </VisibilityWrapper>
+    ),
+  };
 
 export const config: SectionConfig = {
   id: "ModernRetailBanner",

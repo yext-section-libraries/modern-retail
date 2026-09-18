@@ -1,8 +1,9 @@
 import type { SectionConfig } from "@yext/visual-editor";
-
+import { msg, pt } from "@yext/visual-editor";
 import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
+import { useTranslation } from "react-i18next";
 import {
   Background,
   EntityField,
@@ -82,53 +83,53 @@ const defaultHeading: ModernRetailReviewsProps["heading"] = {
 
 const reviewsFields: YextFields<ModernRetailReviewsProps> = {
   section: {
-    label: "Section",
+    label: msg("fields.section", "Section"),
     type: "object",
     objectFields: {
       visibleOnLivePage: {
-        label: "Visible on Live Page",
+        label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
         type: "radio",
         options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
+          { label: msg("fields.options.yes", "Yes"), value: true },
+          { label: msg("fields.options.no", "No"), value: false },
         ],
       },
       backgroundColor: {
-        label: "Background Color",
+        label: msg("fields.backgroundColor", "Background Color"),
         type: "basicSelector",
         options: "BACKGROUND_COLOR",
       },
     },
   },
   heading: {
-    label: "Heading",
+    label: msg("fields.heading", "Heading"),
     type: "object",
     objectFields: {
       text: {
         type: "entityField",
-        label: "Text",
+        label: msg("fields.text", "Text"),
         filter: {
           types: ["type.string"],
         },
       },
       styles: {
-        label: "Text Styles",
+        label: msg("fields.textStyles", "Text Styles"),
         type: "styledText",
       },
       fontColor: {
-        label: "Font Color",
+        label: msg("fields.fontColor", "Font Color"),
         type: "basicSelector",
         options: "SITE_COLOR",
       },
     },
   },
   cardBackgroundColor: {
-    label: "Card Background Color",
+    label: msg("fields.cardBackgroundColor", "Card Background Color"),
     type: "basicSelector",
     options: "BACKGROUND_COLOR",
   },
   starColor: {
-    label: "Star Color",
+    label: msg("fields.starColor", "Star Color"),
     type: "basicSelector",
     options: "SITE_COLOR",
   },
@@ -151,11 +152,20 @@ const formatAverageRating = (value: unknown) => {
     : numericValue.toFixed(1).replace(/\.0$/, "");
 };
 
-const formatReviewCountLabel = (value: unknown) => {
+const formatReviewCountLabel = (
+  value: unknown,
+  t: ReturnType<typeof useTranslation>["t"],
+) => {
   const numericValue = toFiniteNumber(value);
   if (numericValue == null) return "";
   const roundedValue = Math.max(0, Math.round(numericValue));
-  return `${roundedValue} ${roundedValue === 1 ? "Review" : "Reviews"}`;
+  return t("review", {
+    count: roundedValue,
+    defaultValue:
+      roundedValue === 1 ? "{{count}} Review" : "{{count}} Reviews",
+    defaultValue_one: "{{count}} Review",
+    defaultValue_other: "{{count}} Reviews",
+  });
 };
 
 const buildStarString = (value: unknown) => {
@@ -165,14 +175,20 @@ const buildStarString = (value: unknown) => {
   return `${"★".repeat(filledStars)}${"☆".repeat(5 - filledStars)}`;
 };
 
-const formatRatingText = (value: unknown) => {
+const formatRatingText = (
+  value: unknown,
+  t: ReturnType<typeof useTranslation>["t"],
+) => {
   const numericValue = toFiniteNumber(value);
   if (numericValue == null) return "";
   const displayValue =
     numericValue % 1 === 0
       ? numericValue.toFixed(0)
       : numericValue.toFixed(1).replace(/\.0$/, "");
-  return `${displayValue}/5 stars`;
+  return t("ratingOutOfFiveStars", {
+    value: displayValue,
+    defaultValue: "{{value}}/5 stars",
+  });
 };
 
 const formatReviewDate = (value: unknown, locale: string) => {
@@ -231,6 +247,7 @@ const placeholderReviews = [
 const ModernRetailReviewsComponent: PuckComponent<ModernRetailReviewsProps> = (
   props,
 ) => {
+  const { t } = useTranslation();
   const streamDocument =
     (useDocument() as StreamDocumentShape | undefined) ?? {};
   const locale = streamDocument.locale ?? "en";
@@ -260,14 +277,14 @@ const ModernRetailReviewsComponent: PuckComponent<ModernRetailReviewsProps> = (
     : [];
   const score = formatAverageRating(averageRating);
   const summaryStars = buildStarString(averageRating);
-  const reviewCountLabel = formatReviewCountLabel(reviewCount);
+  const reviewCountLabel = formatReviewCountLabel(reviewCount, t);
 
   const liveReviews = topReviews
     .map((review, index) => ({
       key: `${review.authorName || "review"}-${index}`,
       authorName: review.authorName?.trim() || "Anonymous",
       stars: buildStarString(review.rating),
-      ratingText: formatRatingText(review.rating),
+      ratingText: formatRatingText(review.rating, t),
       body: typeof review.content === "string" ? review.content.trim() : "",
       reviewDate: formatReviewDate(review.reviewDate, locale),
     }))
@@ -528,8 +545,10 @@ const ModernRetailReviewsComponent: PuckComponent<ModernRetailReviewsProps> = (
                       padding: "16px",
                     }}
                   >
-                    No first-party reviews available for this entity yet.
-                    Showing editor placeholder content.
+                    {pt(
+                      "noFirstPartyReviewsEditorPlaceholder",
+                      "No first-party reviews available for this entity yet. Showing editor placeholder content.",
+                    )}
                   </div>
                 ) : null}
                 {displayedScore && displayedReviewCountLabel ? (
@@ -605,7 +624,7 @@ const ModernRetailReviewsComponent: PuckComponent<ModernRetailReviewsProps> = (
 
 export const ModernRetailReviews: YextComponentConfig<ModernRetailReviewsProps> =
   {
-    label: "Reviews",
+    label: msg("components.reviews", "Reviews"),
     fields: reviewsFields,
     defaultProps: {
       section: {

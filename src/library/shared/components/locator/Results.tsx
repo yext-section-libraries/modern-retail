@@ -242,6 +242,10 @@ export const ResultsCountSummary = ({
             distance: selectedDistanceOption,
             unit: translateDistanceUnit(t, unit, selectedDistanceOption),
             name: filterDisplayName,
+            defaultValue_one:
+              '{{count}} location within {{distance}} {{unit}} of "{{name}}"',
+            defaultValue_other:
+              '{{count}} locations within {{distance}} {{unit}} of "{{name}}"',
           })}
         </Body>
       );
@@ -252,6 +256,8 @@ export const ResultsCountSummary = ({
         {t("locationsNear", {
           count: resultCount,
           name: filterDisplayName,
+          defaultValue_one: '{{count}} location near "{{name}}"',
+          defaultValue_other: '{{count}} locations near "{{name}}"',
         })}
       </Body>
     );
@@ -261,6 +267,8 @@ export const ResultsCountSummary = ({
     <Body>
       {t("locationWithCount", {
         count: resultCount,
+        defaultValue_one: "{{count}} location",
+        defaultValue_other: "{{count}} locations",
       })}
     </Body>
   );
