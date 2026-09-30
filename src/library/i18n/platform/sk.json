@@ -34,6 +34,7 @@
     "reviews": "Recenzie",
     "services": "Služby"
   },
+  "currentLocation": "Aktuálna poloha",
   "custom": "Custom",
   "customSearchArea": "Oblasť vyhľadávania",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> z vyhľadávania",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> od {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> od vás",
+  "email": "Email",
   "enableCookies": "Povoliť súbory cookie",
   "fields": {
     "accentColor": "Farba zvýraznenia",

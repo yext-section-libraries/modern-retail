@@ -34,6 +34,7 @@
     "reviews": "Anmeldelser",
     "services": "Tjenester"
   },
+  "currentLocation": "Nåværende plassering",
   "custom": "Custom",
   "customSearchArea": "Tilpasset søkeområde",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> fra søk",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> fra {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> fra deg",
+  "email": "E-post",
   "enableCookies": "Aktiver informasjonskapsler",
   "fields": {
     "accentColor": "Aksentfarge",

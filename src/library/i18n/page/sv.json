@@ -1,4 +1,5 @@
 {
+  "address": "Adress",
   "breadcrumb": "Brödsmum",
   "callToAction": "Uppmaning till handling",
   "clearAll": "Rensa alla",
@@ -7,6 +8,7 @@
   "closesAtTime": "Stänger kl. {{time}}",
   "closesAtTimeOnDay": "Stänger {{dayOfWeek}} kl. {{time}}",
   "comingSoon": "Kommer snart",
+  "currentLocation": "Nuvarande plats",
   "custom": "Custom",
   "customSearchArea": "Anpassad sökområde",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> från sökning",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> från {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> från dig",
+  "email": "E-post",
   "enableCookies": "Aktivera cookies",
   "filter": "Filtrera",
   "findALocation": "Hitta en plats",

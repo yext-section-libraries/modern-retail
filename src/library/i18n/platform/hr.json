@@ -34,6 +34,7 @@
     "reviews": "Recenzije",
     "services": "Usluge"
   },
+  "currentLocation": "Trenutna lokacija",
   "custom": "Custom",
   "customSearchArea": "Područje prilagođenog pretraživanja",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> iz pretraživanja",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> od {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> od vas",
+  "email": "E-mail",
   "enableCookies": "Omogući kolačiće",
   "fields": {
     "accentColor": "Boja akcenta",

@@ -34,6 +34,7 @@
     "reviews": "Avaliações",
     "services": "Serviços"
   },
+  "currentLocation": "Localização atual",
   "custom": "Custom",
   "customSearchArea": "Área de pesquisa personalizada",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> do local pesquisado",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> de {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> de você",
+  "email": "E-mail",
   "enableCookies": "Habilitar Cookies",
   "fields": {
     "accentColor": "Cor de destaque",

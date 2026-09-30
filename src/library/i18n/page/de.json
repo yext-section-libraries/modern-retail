@@ -1,4 +1,5 @@
 {
+  "address": "Adresse",
   "breadcrumb": "Breadcrumb",
   "callToAction": "Call to Action",
   "clearAll": "Alles löschen",
@@ -7,6 +8,7 @@
   "closesAtTime": "Schließt um {{time}}",
   "closesAtTimeOnDay": "Schließt am {{dayOfWeek}} um {{time}}",
   "comingSoon": "Demnächst erhältlich",
+  "currentLocation": "Aktueller Standort",
   "custom": "Custom",
   "customSearchArea": "Benutzerdefinierter Suchbereich",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> aus der Suche",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> von {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> von Ihnen",
+  "email": "E-Mail",
   "enableCookies": "Cookies aktivieren",
   "filter": "Filter",
   "findALocation": "Finde einen Standort",

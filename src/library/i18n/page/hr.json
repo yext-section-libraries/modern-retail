@@ -1,4 +1,5 @@
 {
+  "address": "Adresa",
   "breadcrumb": "Krušne mrvice",
   "callToAction": "Poziv na akciju",
   "clearAll": "Obriši sve",
@@ -7,6 +8,7 @@
   "closesAtTime": "Zatvara se u {{time}}",
   "closesAtTimeOnDay": "Zatvara se {{dayOfWeek}} u {{time}}",
   "comingSoon": "Dolazi uskoro",
+  "currentLocation": "Trenutna lokacija",
   "custom": "Custom",
   "customSearchArea": "Područje prilagođenog pretraživanja",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> iz pretraživanja",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> od {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> od vas",
+  "email": "E-mail",
   "enableCookies": "Omogući kolačiće",
   "filter": "Filter",
   "findALocation": "Pronađite lokaciju",

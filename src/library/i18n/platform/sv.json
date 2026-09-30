@@ -34,6 +34,7 @@
     "reviews": "Recensioner",
     "services": "Tjänster"
   },
+  "currentLocation": "Nuvarande plats",
   "custom": "Custom",
   "customSearchArea": "Anpassad sökområde",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> från sökning",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> från {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> från dig",
+  "email": "E-post",
   "enableCookies": "Aktivera cookies",
   "fields": {
     "accentColor": "Accentfärg",

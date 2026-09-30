@@ -34,6 +34,7 @@
     "reviews": "レビュー",
     "services": "サービス"
   },
+  "currentLocation": "現在地",
   "custom": "Custom",
   "customSearchArea": "カスタム検索領域",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> 検索から",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> ({{searchLocation}} から)",
   "distanceLineFromYou": "あなたからの<strong>{{distance}}</strong>",
+  "email": "電子メール",
   "enableCookies": "Cookieを有効にする",
   "fields": {
     "accentColor": "アクセントカラー",

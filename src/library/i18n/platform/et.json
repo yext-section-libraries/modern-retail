@@ -34,6 +34,7 @@
     "reviews": "Arvustused",
     "services": "Teenused"
   },
+  "currentLocation": "Praegune asukoht",
   "custom": "Custom",
   "customSearchArea": "Kohandatud otsinguala",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> otsingust",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> alates {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> teilt",
+  "email": "Meil",
   "enableCookies": "Luba küpsised",
   "fields": {
     "accentColor": "Aktsentvärv",

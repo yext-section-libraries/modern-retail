@@ -1,4 +1,5 @@
 {
+  "address": "Adresa",
   "breadcrumb": "Strúhanka",
   "callToAction": "Výzva na akciu",
   "clearAll": "Vymazať všetko",
@@ -7,6 +8,7 @@
   "closesAtTime": "Zatvára o {{time}}",
   "closesAtTimeOnDay": "Zatvára {{dayOfWeek}} o {{time}}",
   "comingSoon": "Už čoskoro",
+  "currentLocation": "Aktuálna poloha",
   "custom": "Custom",
   "customSearchArea": "Oblasť vyhľadávania",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> z vyhľadávania",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> od {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> od vás",
+  "email": "Email",
   "enableCookies": "Povoliť súbory cookie",
   "filter": "Filter",
   "findALocation": "Nájdite miesto",

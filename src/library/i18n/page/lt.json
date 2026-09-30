@@ -1,4 +1,5 @@
 {
+  "address": "Adresas",
   "breadcrumb": "Duonos komprumbas",
   "callToAction": "Raginimas veikti",
   "clearAll": "Išvalyti viską",
@@ -7,6 +8,7 @@
   "closesAtTime": "Uždaroma {{time}} val.",
   "closesAtTimeOnDay": "{{dayOfWeek}} uždaroma {{time}} val.",
   "comingSoon": "Netrukus",
+  "currentLocation": "Dabartinė vieta",
   "custom": "Custom",
   "customSearchArea": "Pasirinktinė paieškos sritis",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> iš paieškos",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> nuo {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> nuo jūsų",
+  "email": "El. paštas",
   "enableCookies": "Įgalinti slapukus",
   "filter": "Filtruoti",
   "findALocation": "Raskite vietą",

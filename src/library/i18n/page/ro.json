@@ -1,4 +1,5 @@
 {
+  "address": "Adresa",
   "breadcrumb": "Breadcrumb",
   "callToAction": "Apel la acțiune",
   "clearAll": "Ștergeți tot",
@@ -7,6 +8,7 @@
   "closesAtTime": "Se închide la {{time}}",
   "closesAtTimeOnDay": "Se închide {{dayOfWeek}} la {{time}}",
   "comingSoon": "În curând",
+  "currentLocation": "Locația curentă",
   "custom": "Custom",
   "customSearchArea": "Zona de căutare personalizată",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> din căutare",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> din {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> de la tine",
+  "email": "E-mail",
   "enableCookies": "Activați cookie-urile",
   "filter": "Filtra",
   "findALocation": "Găsiți o locație",

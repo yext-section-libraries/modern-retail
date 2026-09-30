@@ -1,4 +1,5 @@
 {
+  "address": "Adres",
   "breadcrumb": "Broodkruimel",
   "callToAction": "Oproep tot actie",
   "clearAll": "Alles wissen",
@@ -7,6 +8,7 @@
   "closesAtTime": "Sluit om {{time}}",
   "closesAtTimeOnDay": "Sluit op {{dayOfWeek}} om {{time}}",
   "comingSoon": "Binnenkort beschikbaar",
+  "currentLocation": "Huidige locatie",
   "custom": "Custom",
   "customSearchArea": "Aangepast zoekgebied",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> uit zoekopdracht",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> van {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> van jou",
+  "email": "E-mail",
   "enableCookies": "Cookies inschakelen",
   "filter": "Filter",
   "findALocation": "Vind een locatie",
