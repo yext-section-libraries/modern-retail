@@ -34,6 +34,7 @@
     "reviews": "评价",
     "services": "服务"
   },
+  "currentLocation": "当前位置",
   "custom": "自定义",
   "customSearchArea": "自定义搜索区域",
   "dismissReviewGenerationNotice": "关闭评论生成提示",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "来自搜索的 <strong>{{distance}}</strong>",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> 来自 {{searchLocation}}",
   "distanceLineFromYou": "来自您的 <strong>{{distance}}</strong>",
+  "email": "电子邮件",
   "enableCookies": "启用 Cookie",
   "fields": {
     "accentColor": "强调色",

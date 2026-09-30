@@ -34,6 +34,7 @@
     "reviews": "Opinie",
     "services": "Usługi"
   },
+  "currentLocation": "Aktualna lokalizacja",
   "custom": "Custom",
   "customSearchArea": "Niestandardowy obszar wyszukiwania",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> z wyszukiwania",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> od {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> od Ciebie",
+  "email": "E-mail",
   "enableCookies": "Włącz pliki cookie",
   "fields": {
     "accentColor": "Kolor akcentujący",

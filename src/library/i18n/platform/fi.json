@@ -34,6 +34,7 @@
     "reviews": "Arvostelut",
     "services": "Palvelut"
   },
+  "currentLocation": "Nykyinen sijainti",
   "custom": "Custom",
   "customSearchArea": "Mukautettu hakualue",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> hausta",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> alkaen {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> sinulta",
+  "email": "Sähköposti",
   "enableCookies": "Ota evästeet käyttöön",
   "fields": {
     "accentColor": "Aksenttiväri",

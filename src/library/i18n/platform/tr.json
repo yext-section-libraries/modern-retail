@@ -34,6 +34,7 @@
     "reviews": "Yorumlar",
     "services": "Hizmetler"
   },
+  "currentLocation": "Mevcut Konum",
   "custom": "Custom",
   "customSearchArea": "Özel arama alanı",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "Aramadan <strong>{{distance}}</strong>",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong>, {{searchLocation}}'den",
   "distanceLineFromYou": "<strong>{{distance}}</strong> sizden",
+  "email": "E-posta",
   "enableCookies": "Çerezleri Etkinleştir",
   "fields": {
     "accentColor": "Vurgu Rengi",

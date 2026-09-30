@@ -1,4 +1,5 @@
 {
+  "address": "Adres",
   "breadcrumb": "Ekmek kırıntısı",
   "callToAction": "Eylem Çağrısı",
   "clearAll": "Tümünü Temizle",
@@ -7,6 +8,7 @@
   "closesAtTime": "{{time}} saatinde kapanır",
   "closesAtTimeOnDay": "{{dayOfWeek}} {{time}} saatinde kapanır",
   "comingSoon": "Yakında gelecek",
+  "currentLocation": "Mevcut Konum",
   "custom": "Custom",
   "customSearchArea": "Özel arama alanı",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "Aramadan <strong>{{distance}}</strong>",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong>, {{searchLocation}}'den",
   "distanceLineFromYou": "<strong>{{distance}}</strong> sizden",
+  "email": "E-posta",
   "enableCookies": "Çerezleri Etkinleştir",
   "filter": "Filtre",
   "findALocation": "Bir Konum Bul",

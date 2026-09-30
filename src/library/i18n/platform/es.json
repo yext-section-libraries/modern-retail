@@ -34,6 +34,7 @@
     "reviews": "Reseñas",
     "services": "Servicios"
   },
+  "currentLocation": "Ubicación actual",
   "custom": "Custom",
   "customSearchArea": "Área de búsqueda personalizada",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -41,6 +42,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> de la búsqueda",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> de {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> de ti",
+  "email": "Correo electrónico",
   "enableCookies": "Habilitar cookies",
   "fields": {
     "accentColor": "Color de acento",

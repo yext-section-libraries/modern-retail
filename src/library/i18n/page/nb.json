@@ -1,4 +1,5 @@
 {
+  "address": "Adresse",
   "breadcrumb": "Brødsmule",
   "callToAction": "Ring til handling",
   "clearAll": "Fjern alle",
@@ -7,6 +8,7 @@
   "closesAtTime": "Stenger kl. {{time}}",
   "closesAtTimeOnDay": "Stenger {{dayOfWeek}} kl. {{time}}",
   "comingSoon": "Kommer snart",
+  "currentLocation": "Nåværende plassering",
   "custom": "Custom",
   "customSearchArea": "Tilpasset søkeområde",
   "dismissReviewGenerationNotice": "Dismiss review generation notice",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "<strong>{{distance}}</strong> fra søk",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> fra {{searchLocation}}",
   "distanceLineFromYou": "<strong>{{distance}}</strong> fra deg",
+  "email": "E-post",
   "enableCookies": "Aktiver informasjonskapsler",
   "filter": "Filter",
   "findALocation": "Finn et sted",

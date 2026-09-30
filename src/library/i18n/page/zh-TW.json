@@ -1,4 +1,5 @@
 {
+  "address": "地址",
   "breadcrumb": "麵包屑",
   "callToAction": "號召性用語",
   "clearAll": "全部清除",
@@ -7,6 +8,7 @@
   "closesAtTime": "{{time}}結束營業",
   "closesAtTimeOnDay": "{{dayOfWeek}} {{time}}結束營業",
   "comingSoon": "即將推出",
+  "currentLocation": "目前位置",
   "custom": "自定义",
   "customSearchArea": "自定義搜索區域",
   "dismissReviewGenerationNotice": "關閉評論生成提示",
@@ -14,6 +16,7 @@
   "distanceLineFromSearch": "來自搜尋的 <strong>{{distance}}</strong>",
   "distanceLineFromSearchLocation": "<strong>{{distance}}</strong> 來自 {{searchLocation}}",
   "distanceLineFromYou": "來自您的 <strong>{{distance}}</strong>",
+  "email": "電子郵件",
   "enableCookies": "啟用 Cookie",
   "filter": "篩選",
   "findALocation": "找到一個位置",
