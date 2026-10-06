@@ -325,6 +325,10 @@ const ModernRetailFaqComponent: PuckComponent<ModernRetailFaqProps> = (
           .ps-faq-shell .ps-faq-panel-inner p {
             margin: 0;
           }
+          /* Constant rich text has inline sizes. The Font Size field must take priority. */
+          .ps-faq-answer--custom-size .rtf-wrapper :is(p, li, span) {
+            font-size: inherit !important;
+          }
         `}</style>
         <Background
           as="section"
@@ -417,7 +421,11 @@ const ModernRetailFaqComponent: PuckComponent<ModernRetailFaqProps> = (
                         </button>
                         <div className="ps-faq-panel">
                           <div
-                            className="ps-faq-panel-inner"
+                            className={
+                              props.answer.styles.fontSize === "default"
+                                ? "ps-faq-panel-inner"
+                                : "ps-faq-panel-inner ps-faq-answer--custom-size"
+                            }
                             style={{
                               ...getSharedTextStyle(
                                 props.answer.styles,

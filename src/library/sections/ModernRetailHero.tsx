@@ -929,6 +929,7 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
   );
   const descriptionContent = renderResolvedRichText(resolvedDescription, {
     ...props.description.styles,
+    color: props.description.fontColor,
   });
   const resolvedHours = resolveComponentData(
     props.hours,
@@ -1035,6 +1036,10 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
           }
           .ps-hero-description p + p {
             margin-top: 1em;
+          }
+          /* Constant rich text has inline sizes. The Font Size field must take priority. */
+          .ps-hero-description--custom-size .rtf-wrapper :is(p, li, span) {
+            font-size: inherit !important;
           }
           @media (min-width: 1440px) {
             .ps-hero-layout {
@@ -1318,7 +1323,11 @@ const ModernRetailHeroComponent: PuckComponent<ModernRetailHeroProps> = (
                     constantValueEnabled={props.description.text.constantValueEnabled}
                   >
                     <div
-                      className="ps-hero-description"
+                      className={
+                        props.description.styles.fontSize === "default"
+                          ? "ps-hero-description"
+                          : "ps-hero-description ps-hero-description--custom-size"
+                      }
                       style={{
                         margin: "18px 0 0",
                       }}

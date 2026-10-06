@@ -57,28 +57,51 @@ export const hasExplicitThemeColor = (
 ): color is ThemeColor =>
   Boolean(color?.selectedColor && color.selectedColor !== "default");
 
+/** Applies text styles to resolved rich text and its inner HTML renderer. */
 export const renderResolvedRichText = (
   value: unknown,
   richTextStyleOverrides?: MaybeRTFProps["richTextStyleOverrides"],
 ): React.ReactNode => {
-  if (React.isValidElement(value)) {
+  if (
+    React.isValidElement<{
+      style?: React.CSSProperties;
+      children?: React.ReactNode;
+      richTextStyleOverrides?: MaybeRTFProps["richTextStyleOverrides"];
+    }>(value)
+  ) {
     if (!richTextStyleOverrides) {
       return value;
     }
 
-    return React.cloneElement(
-      value as React.ReactElement<{ style?: React.CSSProperties }>,
-      {
-        style: {
-          ...(value.props as { style?: React.CSSProperties }).style,
+    if (value.type === MaybeRTF) {
+      return React.cloneElement(value as React.ReactElement<MaybeRTFProps>, {
+        richTextStyleOverrides: {
+          ...value.props.richTextStyleOverrides,
           ...richTextStyleOverrides,
-          color:
-            typeof richTextStyleOverrides.color === "string"
-              ? richTextStyleOverrides.color
-              : getThemeColorCssValue(richTextStyleOverrides.color),
         },
+      });
+    }
+
+    const children = value.props.children;
+    return React.cloneElement(value, {
+      children:
+        React.isValidElement<MaybeRTFProps>(children) && children.type === MaybeRTF
+          ? React.cloneElement(children, {
+              richTextStyleOverrides: {
+                ...children.props.richTextStyleOverrides,
+                ...richTextStyleOverrides,
+              },
+            })
+          : children,
+      style: {
+        ...value.props.style,
+        ...richTextStyleOverrides,
+        color:
+          typeof richTextStyleOverrides.color === "string"
+            ? richTextStyleOverrides.color
+            : getThemeColorCssValue(richTextStyleOverrides.color),
       },
-    );
+    });
   }
 
   const data =
