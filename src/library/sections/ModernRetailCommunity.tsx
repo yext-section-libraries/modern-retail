@@ -395,6 +395,13 @@ const ModernRetailCommunityComponent: PuckComponent<
           .ps-community-body p + p {
             margin-top: 1em;
           }
+          /* Constant rich text has inline styles. The selected text styles must take priority. */
+          .ps-community-body--custom-size .rtf-wrapper :is(p, li, span) {
+            font-size: inherit !important;
+          }
+          .ps-community-body--custom-weight .rtf-wrapper :is(p, li, span) {
+            font-weight: inherit !important;
+          }
           .block-banner-container .block-heading {
             letter-spacing: -0.04em;
             line-height: 1.15;
@@ -497,7 +504,15 @@ const ModernRetailCommunityComponent: PuckComponent<
                       constantValueEnabled={props.body.text.constantValueEnabled}
                     >
                       <div
-                        className="block-text inline-richtext rte ps-community-body"
+                        className={`block-text inline-richtext rte ps-community-body${
+                          props.body.styles.fontSize === "default"
+                            ? ""
+                            : " ps-community-body--custom-size"
+                        }${
+                          props.body.styles.fontWeight === "default"
+                            ? ""
+                            : " ps-community-body--custom-weight"
+                        }`}
                         style={{
                           margin: "14px 0 18px",
                           opacity: props.body.fontColor ? undefined : 0.82,

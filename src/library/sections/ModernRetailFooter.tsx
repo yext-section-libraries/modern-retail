@@ -12,6 +12,7 @@ import {
   getSurfaceColorStyle,
   getThemeColorCssValue as resolveThemeColorCssValue,
   Image,
+  isDarkColor,
   type StyledImageValue,
   type StyledTextValue,
   type ThemeColor,
@@ -324,6 +325,8 @@ const footerFields: YextFields<ModernRetailFooterProps> = {
   footerLinksStyles: {
     label: msg("fields.linkStyling", "Link Styling"),
     type: "styledText",
+    includeColor: true,
+    colorLabel: msg("fields.color", "Color"),
   },
   footerLinks: {
     label: msg("fields.footerLinks", "Footer Links"),
@@ -415,8 +418,8 @@ const ModernRetailFooterComponent: PuckComponent<ModernRetailFooterProps> = (
   };
   const footerLinkStyle = getTextStyles(
     props.footerLinksStyles,
-    undefined,
-    footerForegroundColor,
+    props.footerLinksStyles.color,
+    isDarkColor(sectionBackgroundColor, streamDocument) ? "white" : "black",
   );
   const brandLogoWrapperStyle: React.CSSProperties = {
     aspectRatio:
