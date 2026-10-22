@@ -139,6 +139,7 @@
     "logoSource": "Logo Source",
     "longitude": "Longitude",
     "map": "Mapa",
+    "mapStartingZoom": "Nível de zoom inicial do mapa",
     "mapboxMapStyle": "Estilo de mapa Mapbox",
     "mapStyle": "Estilo de mapa",
     "name": "Nome",
