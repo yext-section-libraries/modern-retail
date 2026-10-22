@@ -139,6 +139,7 @@
     "logoSource": "Logo Source",
     "longitude": "Hosszúság",
     "map": "Térkép",
+    "mapStartingZoom": "A térkép kezdeti nagyítási szintje",
     "mapboxMapStyle": "Mapbox térképstílus",
     "mapStyle": "Térképstílus",
     "name": "Név",

@@ -139,6 +139,7 @@
     "logoSource": "徽标来源",
     "longitude": "经度",
     "map": "地图",
+    "mapStartingZoom": "地图初始缩放级别",
     "mapboxMapStyle": "Mapbox 地图样式",
     "mapStyle": "地图样式",
     "name": "姓名",
