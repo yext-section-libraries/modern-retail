@@ -53,6 +53,7 @@
     "analytics": "Analytics",
     "answer": "Antwort",
     "aspectRatio": "Seitenverhältnis",
+    "autoSearchOnMapMove": "Automatische Suche nach Kartenbewegung",
     "background": "Hintergrund",
     "backgroundColor": "Hintergrundfarbe",
     "backgroundImage": "Hintergrundbild",

@@ -53,6 +53,7 @@
     "analytics": "Analytiikka",
     "answer": "Vastaus",
     "aspectRatio": "Kuvasuhde",
+    "autoSearchOnMapMove": "Hae automaattisesti kartan liikkeestä",
     "background": "Tausta",
     "backgroundColor": "Taustaväri",
     "backgroundImage": "Taustakuva",

@@ -53,6 +53,7 @@
     "analytics": "Analítica",
     "answer": "Respuesta",
     "aspectRatio": "Relación de aspecto",
+    "autoSearchOnMapMove": "Buscar automáticamente en el movimiento del mapa",
     "background": "Fondo",
     "backgroundColor": "Color de fondo",
     "backgroundImage": "Imagen de fondo",
