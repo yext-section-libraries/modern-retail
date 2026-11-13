@@ -53,6 +53,7 @@
     "analytics": "Analytics",
     "answer": "Svar",
     "aspectRatio": "Aspektforhold",
+    "autoSearchOnMapMove": "Søk automatisk på kartbevegelse",
     "background": "Bakgrunn",
     "backgroundColor": "Bakgrunnsfarge",
     "backgroundImage": "Bakgrunnsbilde",
